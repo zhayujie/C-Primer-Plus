@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 11 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSPA7C5.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/11.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\zxjbc\µÚÊ®Ò»ÕÂ\11.c"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSPA7C5.tmp" 
+<h3>Output Window</h3>
+Compiling...
+11.c
+
+
+
+<h3>Results</h3>
+11.obj - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

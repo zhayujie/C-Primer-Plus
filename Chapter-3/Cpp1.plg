@@ -1,0 +1,26 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Cpp1 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP2A84.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/Cpp1.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\zxjbc\ตฺศýีย\Cpp1.cpp"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP2A84.tmp" 
+<h3>Output Window</h3>
+Compiling...
+Skipping... (no relevant changes detected)
+Cpp1.cpp
+
+
+
+<h3>Results</h3>
+Cpp1.obj - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

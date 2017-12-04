@@ -1,0 +1,26 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 7 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\ADMINI~1\AppData\Local\Temp\RSP6B98.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/7.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\zxjbc\第十一章\7.c"
+]
+Creating command line "cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\RSP6B98.tmp" 
+<h3>Output Window</h3>
+Compiling...
+7.c
+D:\zxjbc\第十一章\7.c(22) : warning C4018: '>=' : signed/unsigned mismatch
+
+
+
+<h3>Results</h3>
+7.obj - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

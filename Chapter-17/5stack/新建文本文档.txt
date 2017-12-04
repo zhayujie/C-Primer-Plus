@@ -1,0 +1,139 @@
+#ifndef STACK_H_
+#define STACK_H_
+
+#define SMAX 10
+
+struct char Item;
+struct stack {
+	Item item[SMAX];
+	int items;
+} Stack;
+
+//初始化栈
+void InitializeStack(Stack * ps);
+
+//确定栈为空
+int StackIsEmpty(const Stack * ps);
+
+//确定栈为满
+int StackIsFull(const Stack * ps);
+
+//统计栈内项数
+int StackItemCount(const Stack * ps)
+
+//从栈顶压入项
+int AddItem(Stack * ps, Item item);
+
+//从栈顶弹出项
+int DelItem(Stack * ps, Item * pitem);
+
+//弹出项
+void EmptyItem(Stack * ps);
+
+#endif
+
+
+#include <stdio.h>
+#include "stack.h"
+
+//初始化栈
+void InitializeStack(Stack * ps)
+{
+	ps->items = 0;
+}	
+
+//确定栈为空
+int StackIsEmpty(const Stack * ps)
+{
+	return (ps->items == 0) ? 0 : 1;
+}
+
+//确定栈为满
+int StackIsFull(const Stack * ps)
+{
+	return (ps->items == SMAX) ? 0 : 1;
+}
+//统计栈内项数
+int StackItemCount(const Stack * ps)
+{
+	return ps->items;
+}
+
+//从栈顶压入项
+int AddItem(Stack * ps, Item item)
+{
+	if (StackIsFull(ps))
+		return 0;
+	else
+	{
+		ps->item[ps->items++] = item;
+		return 1;
+	}
+}
+
+//从栈顶弹出项
+int DelItem(Stack * ps, Item * pitem);
+{
+	if (StackIsEmpty(ps))
+		return 0;
+	else
+	{
+		* pitem = ps->item[ps->items - 1];
+		ps->item[ps->items - 1] = '\0';
+		ps->items--;
+		return 1;
+	}
+}
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "stack.h"
+
+char * s_gets(char * st, int n);
+
+int main(void)
+{
+	Stack stack;
+	Item temp[SMAX];
+	Item ch;
+	int i;
+
+	//将用户输入数据压入栈中
+	printf("Enter a string:\n");
+	while (s_gets(temp, SMAX) != NULL && temp[0] != '\0')
+	{
+		for (i = 0; temp[i] != '\0'; i++)
+		{
+			if (AddItem(&stack, temp[i]) == 0)
+			{
+				break;
+			}
+		}
+		
+		if (StackIsFull(&stack))
+		{
+			fprintf(stderr, "The stack is full.\n");
+			break;
+		}
+		printf("Your next string (empty line to stop):\n");
+	}
+
+	//从栈中弹出数据并输出
+	if (StackIsEmpty(&stack))
+	{
+		fprintf(stderr, "There is no data.\n");
+		exit(1);
+	} 
+	
+	printf("You input %d charcters.\n", StackItemCount(&stack));
+	printf("The string in reverse order:\n");
+	while (StackIsEmpty(&stack) != 1)
+	{
+		DelItem(&stack, &ch);
+		putchar(ch);
+	}
+	printf("\nBye.\n");
+
+	return 0;
+}
