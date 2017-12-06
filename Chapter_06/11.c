@@ -2,17 +2,17 @@
 #define SIZE 8
 int main(void)
 {
-	int num[SIZE];
-	int index;
-	
-	printf("Enter 8 integers: ");
-	for (index=0; index<SIZE; index++)        //ÊäÈë8¸öÕûÊı
-		scanf("%d", &num[index]);
-	for (index=SIZE-1; index >= 0; index--)	  //µ¹ĞòÊä³ö
-		printf("%d ", num[index]);
-	printf("\n");
+    int num[SIZE];
+    int index;
+    
+    printf("Enter 8 integers: ");
+    for (index=0; index<SIZE; index++)        //è¾“å…¥8ä¸ªæ•´æ•°
+        scanf("%d", &num[index]);
+    for (index=SIZE-1; index >= 0; index--)	  //å€’åºè¾“å‡º
+        printf("%d ", num[index]);
+    printf("\n");
 
-	return 0;
+    return 0;
 }
 
 

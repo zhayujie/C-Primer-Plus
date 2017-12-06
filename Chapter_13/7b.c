@@ -7,65 +7,65 @@ char * s_gets(char * st, int n);
 
 int main(void)
 {
-	FILE * f1, * f2;
-	char name_f1[SIZE];
-	char name_f2[SIZE];
-	char ch1, ch2;
+    FILE * f1, * f2;
+    char name_f1[SIZE];
+    char name_f2[SIZE];
+    char ch1, ch2;
 
-	//ÒÀ´ÎÊäÈëÁ½¸öÎÄ¼şµÄÎÄ¼şÃû
-	fprintf(stdout, "Please enter the first file name:\n");
-	s_gets(name_f1, SIZE);
-	fprintf(stdout, "Please enter the second file name:\n");
-	s_gets(name_f2, SIZE);
-	
-	//ÒÀ´ÎÊäÈëÁ½¸öÎÄ¼ş
-	if ((f1 = fopen(name_f1, "r")) == NULL)
-	{
-		fprintf(stderr, "Could not open the %s\n", name_f1);
-		exit(EXIT_FAILURE);
-	}
-	if ((f2 = fopen(name_f2, "r")) == NULL)
-	{
-		fprintf(stderr, "Could not open the %s\n", name_f2);
-		exit(EXIT_FAILURE);
-	}
-	
-	do
-	{
-		while ((ch1 = getc(f1)) != EOF && ch1 != '\n')
-		{
-			putchar(ch1);
-		}
-		while ((ch2 = getc(f2)) != EOF && ch2 != '\n')
-		{
-			putchar(ch2);
-		}
-		putchar('\n');
-	}
-	while (ch1 != EOF || ch2 != EOF);
+    //ä¾æ¬¡è¾“å…¥ä¸¤ä¸ªæ–‡ä»¶çš„æ–‡ä»¶å
+    fprintf(stdout, "Please enter the first file name:\n");
+    s_gets(name_f1, SIZE);
+    fprintf(stdout, "Please enter the second file name:\n");
+    s_gets(name_f2, SIZE);
+    
+    //ä¾æ¬¡è¾“å…¥ä¸¤ä¸ªæ–‡ä»¶
+    if ((f1 = fopen(name_f1, "r")) == NULL)
+    {
+        fprintf(stderr, "Could not open the %s\n", name_f1);
+        exit(EXIT_FAILURE);
+    }
+    if ((f2 = fopen(name_f2, "r")) == NULL)
+    {
+        fprintf(stderr, "Could not open the %s\n", name_f2);
+        exit(EXIT_FAILURE);
+    }
+    
+    do
+    {
+        while ((ch1 = getc(f1)) != EOF && ch1 != '\n')
+        {
+            putchar(ch1);
+        }
+        while ((ch2 = getc(f2)) != EOF && ch2 != '\n')
+        {
+            putchar(ch2);
+        }
+        putchar('\n');
+    }
+    while (ch1 != EOF || ch2 != EOF);
 
-	fclose(f1);
-	fclose(f2);
+    fclose(f1);
+    fclose(f2);
 
-	return 0;
+    return 0;
 }
 
-//×Ô¶¨Òå¶ÁÈ¡ÎÄ¼şÃûµÄº¯Êı
+//è‡ªå®šä¹‰è¯»å–æ–‡ä»¶åçš„å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	char * find;
-	char * ret_val;
+    char * find;
+    char * ret_val;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');	 		//²éÕÒ»»ĞĞ·û
-		if (find)
-			*find = '\0';					//Ìæ»»Îª¿Õ×Ö·û
-		else
-			while (getchar() != '\n')
-				continue;					//´¦Àí¶àÓàÊäÈë
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');	 		//æŸ¥æ‰¾æ¢è¡Œç¬¦
+        if (find)
+            *find = '\0';					//æ›¿æ¢ä¸ºç©ºå­—ç¬¦
+        else
+            while (getchar() != '\n')
+                continue;					//å¤„ç†å¤šä½™è¾“å…¥
+    }
 
-	return ret_val;
+    return ret_val;
 }

@@ -2,34 +2,34 @@
 #include <ctype.h>
 int main(void)
 {
-	char ch;
-	int inword = 0;			//ÔÚµ¥´ÊÖĞÎª1·ñÔòÎª0
-	int words = 0;			//µ¥´ÊÊı
-	int chars = 0;			//×Ö·ûÊı
+    char ch;
+    int inword = 0;			//åœ¨å•è¯ä¸­ä¸º1å¦åˆ™ä¸º0
+    int words = 0;			//å•è¯æ•°
+    int chars = 0;			//å­—ç¬¦æ•°
 
-	printf("Please enter some words:\n");
-	while ((ch = getchar()) != EOF)
-	{
-		if (!isspace(ch) && !ispunct(ch))
-			chars++;		
-	//¿ªÊ¼Ò»¸öĞÂµÄµ¥´Ê
-		if (!isspace(ch) && !ispunct(ch) && !inword)
-		{
-			inword = 1;
-			words++;
-		}
-	//µ¥´ÊÄ©Î²
-		if (isspace(ch) || ispunct(ch) && inword)
-			inword = 0;
-	}
-		printf("There are %d words and %d letters\n",
-				words, chars);
-		printf("The average number of letters of ");
-		printf("each word is %.2f.\n", 
-				((double)chars / (double)words));
+    printf("Please enter some words:\n");
+    while ((ch = getchar()) != EOF)
+    {
+        if (!isspace(ch) && !ispunct(ch))
+            chars++;
+    //å¼€å§‹ä¸€ä¸ªæ–°çš„å•è¯
+        if (!isspace(ch) && !ispunct(ch) && !inword)
+        {
+            inword = 1;
+            words++;
+        }
+    //å•è¯æœ«å°¾
+        if (isspace(ch) || ispunct(ch) && inword)
+            inword = 0;
+    }
+        printf("There are %d words and %d letters\n",
+                words, chars);
+        printf("The average number of letters of ");
+        printf("each word is %.2f.\n",
+                ((double)chars / (double)words));
 
-		return 0;
-	}
+        return 0;
+    }
 
 
 

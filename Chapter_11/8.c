@@ -2,73 +2,73 @@
 #include <string.h>
 #define SIZE 40
 #define QUIT "quit"
-char * s_gets(char * st, int n);				//¶ÁÈ¡×Ö·û´®ÊäÈëµÄº¯Êı
+char * s_gets(char * st, int n);				//è¯»å–å­—ç¬¦ä¸²è¾“å…¥çš„å‡½æ•°
 char * string_in(char * s1, char * s2);
 int main(void)
 {
-	char str1[SIZE];
-	char str2[SIZE];
-	char * ret_val;
-	
-	printf("Input the first string (type quit to quit):\n");
-	while (strcmp(s_gets(str1, SIZE), QUIT))		//ÊäÈëquit½áÊø
-	{
-		printf("Input the second string:\n");
-		s_gets(str2, SIZE);
-		ret_val = string_in(str1, str2);
-		if (ret_val)
-		{
-			printf("Find!\n");
-			puts(ret_val);
-		}
-		else
-			printf("Can't find!\n");
-		printf("Input the first string (type quit to quit):\n");
-	}
-	
-	printf("Bye.\n");
+    char str1[SIZE];
+    char str2[SIZE];
+    char * ret_val;
+    
+    printf("Input the first string (type quit to quit):\n");
+    while (strcmp(s_gets(str1, SIZE), QUIT))		//è¾“å…¥quitç»“æŸ
+    {
+        printf("Input the second string:\n");
+        s_gets(str2, SIZE);
+        ret_val = string_in(str1, str2);
+        if (ret_val)
+        {
+            printf("Find!\n");
+            puts(ret_val);
+        }
+        else
+            printf("Can't find!\n");
+        printf("Input the first string (type quit to quit):\n");
+    }
+    
+    printf("Bye.\n");
 }
 
-//×Ô¶¨ÒåµÄ×Ö·û´®ÊäÈëº¯Êı
+//è‡ªå®šä¹‰çš„å­—ç¬¦ä¸²è¾“å…¥å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	int i = 0;
+    int i = 0;
 
-	if (fgets(st, n, stdin))	//¼´·µ»ØÖµst²»µÈÓÚNULL
-	{
-		while (st[i] != '\n' && st[i] != '\0')
-			i++;
-		if (st[i] == '\n')
-			st[i] = '\0';
-		else 
-			while (getchar() != '\n')
-				continue;
-	}
+    if (fgets(st, n, stdin))	//å³è¿”å›å€¼stä¸ç­‰äºNULL
+    {
+        while (st[i] != '\n' && st[i] != '\0')
+            i++;
+        if (st[i] == '\n')
+            st[i] = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return st;
+    return st;
 }
 
 
-//ÔÚs1ÖĞ¼ì²âs2
+//åœ¨s1ä¸­æ£€æµ‹s2
 char * string_in(char * s1, char * s2)
 {
-	int i;
-	
-	while (*s1)
-	{	
-		i = 0;
-		while (s1[i] == s2[i])
-		{
-			i++;
-			if (!s2[i])
-				return s1;
-		}
-		s1++;
-	}
+    int i;
+    
+    while (*s1)
+    {
+        i = 0;
+        while (s1[i] == s2[i])
+        {
+            i++;
+            if (!s2[i])
+                return s1;
+        }
+        s1++;
+    }
 
-	return NULL;
+    return NULL;
 }
 
 
 
-		
+        

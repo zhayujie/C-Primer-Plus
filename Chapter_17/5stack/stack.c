@@ -1,53 +1,53 @@
 #include <stdio.h>
 #include "stack.h"
 
-//³õÊ¼»¯Õ»
+//åˆå§‹åŒ–æ ˆ
 void InitializeStack(Stack * ps)
 {
-	ps->items = 0;
-}	
+    ps->items = 0;
+}
 
-//È·¶¨Õ»Îª¿Õ
+//ç¡®å®šæ ˆä¸ºç©º
 int StackIsEmpty(const Stack * ps)
 {
-	return (ps->items == 0) ? 1 : 0;
+    return (ps->items == 0) ? 1 : 0;
 }
 
-//È·¶¨Õ»ÎªÂú
+//ç¡®å®šæ ˆä¸ºæ»¡
 int StackIsFull(const Stack * ps)
 {
-	return (ps->items == SMAX) ? 1 : 0;
+    return (ps->items == SMAX) ? 1 : 0;
 }
 
-//Í³¼ÆÕ»ÄÚÏîÊı
+//ç»Ÿè®¡æ ˆå†…é¡¹æ•°
 int StackItemCount(const Stack * ps)
 {
-	return ps->items;
+    return ps->items;
 }
 
-//´ÓÕ»¶¥Ñ¹ÈëÏî
+//ä»æ ˆé¡¶å‹å…¥é¡¹
 int AddItem(Stack * ps, Item item)
 {
-	if (StackIsFull(ps))
-		return 0;
-	else
-	{
-		ps->item[ps->items] = item;
-		ps->items++;
-		return 1;
-	}
+    if (StackIsFull(ps))
+        return 0;
+    else
+    {
+        ps->item[ps->items] = item;
+        ps->items++;
+        return 1;
+    }
 }
 
-//´ÓÕ»¶¥µ¯³öÏî
+//ä»æ ˆé¡¶å¼¹å‡ºé¡¹
 int DelItem(Stack * ps, Item * pitem)
 {
-	if (StackIsEmpty(ps))
-		return 0;
-	else
-	{
-		* pitem = ps->item[ps->items - 1];
-		ps->item[ps->items - 1] = '\0';
-		ps->items--;
-		return 1;
-	}
+    if (StackIsEmpty(ps))
+        return 0;
+    else
+    {
+        * pitem = ps->item[ps->items - 1];
+        ps->item[ps->items - 1] = '\0';
+        ps->items--;
+        return 1;
+    }
 }

@@ -1,19 +1,19 @@
 #include <stdio.h>
 int main(void)
 {
-	double sum1=0, sum2=0; 
-	int count, items, sign;
-	
-	printf("Enter the items: ");
-	scanf("%d", &items);                                           //ÊäÈëĞòÁĞµÄÏîÊı
-	for (count=1, sign=1; count <= items; count++, sign *= -1)	
-	{
-		sum1 += 1.0 / count;
-		sum2 += 1.0 * sign / count;
-	}															   //·Ö±ğ¼ÆËãÁ½ĞòÁĞµÄºÍ
-	printf("1.0 + 1.0/2.0 + 1.0/3.0 + 1.0/4.0 + ... = %f\n", sum1);
-	printf("1.0 - 1.0/2.0 + 1.0/3.0 - 1.0/4.0 + ... = %f\n", sum2);
+    double sum1=0, sum2=0;
+    int count, items, sign;
+    
+    printf("Enter the items: ");
+    scanf("%d", &items);                                           //è¾“å…¥åºåˆ—çš„é¡¹æ•°
+    for (count=1, sign=1; count <= items; count++, sign *= -1)
+    {
+        sum1 += 1.0 / count;
+        sum2 += 1.0 * sign / count;
+    }															   //åˆ†åˆ«è®¡ç®—ä¸¤åºåˆ—çš„å’Œ
+    printf("1.0 + 1.0/2.0 + 1.0/3.0 + 1.0/4.0 + ... = %f\n", sum1);
+    printf("1.0 - 1.0/2.0 + 1.0/3.0 - 1.0/4.0 + ... = %f\n", sum2);
 
 
-	return 0;
+    return 0;
 }

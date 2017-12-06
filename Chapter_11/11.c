@@ -3,166 +3,166 @@
 #include <ctype.h>
 #define LIM 10
 #define SIZE 80
-char * s_gets(char * st, int n);			//»ñÈ¡×Ö·û´®ÊäÈë
-char get_choice(void);						//»ñÈ¡Ñ¡Ôñ
-void print_sour(char * st[], int n);		//´òÓ¡Ô´×Ö·û´®
-void print_ascii(char * st[], int n);		//°´ASCIIÂëË³Ğò´òÓ¡
-void print_length(char * st[], int n);		//°´³¤¶ÈË³Ğò´òÓ¡
-void print_first_word(char * st[], int n);	//°´µÚÒ»¸öµ¥´ÊµÄ³¤¶ÈË³Ğò´òÓ¡
-int first_word(char * st);					//¼ÆËãµÚÒ»¸öµ¥´ÊÊı
+char * s_gets(char * st, int n);			//è·å–å­—ç¬¦ä¸²è¾“å…¥
+char get_choice(void);						//è·å–é€‰æ‹©
+void print_sour(char * st[], int n);		//æ‰“å°æºå­—ç¬¦ä¸²
+void print_ascii(char * st[], int n);		//æŒ‰ASCIIç é¡ºåºæ‰“å°
+void print_length(char * st[], int n);		//æŒ‰é•¿åº¦é¡ºåºæ‰“å°
+void print_first_word(char * st[], int n);	//æŒ‰ç¬¬ä¸€ä¸ªå•è¯çš„é•¿åº¦é¡ºåºæ‰“å°
+int first_word(char * st);					//è®¡ç®—ç¬¬ä¸€ä¸ªå•è¯æ•°
 
 int main(void)
 {
-	char str[LIM][SIZE];
-	char * ptr[LIM];		
-	int row = 0;							//ÊäÈëµÄ×Ö·û´®ÊıÁ¿
-	char choice;							//ÓÃ»§ÊäÈëµÄÑ¡Ôñ×Ö·û
+    char str[LIM][SIZE];
+    char * ptr[LIM];
+    int row = 0;							//è¾“å…¥çš„å­—ç¬¦ä¸²æ•°é‡
+    char choice;							//ç”¨æˆ·è¾“å…¥çš„é€‰æ‹©å­—ç¬¦
 
-	printf("Input some strings before EOF (no more than 10):\n");
-	while (row < LIM && s_gets(str[row], SIZE) != NULL)
-	{
-		ptr[row] = str[row];				//ÉèÖÃÖ¸ÕëÖ¸Ïò×Ö·û´® 
-		row++;	
-	}
-	while((choice = get_choice()) != 'q')
-	{
-		printf("\n");
-		switch (choice)
-		{
-			case 'a': print_sour(ptr, row);
-					  break;
-			case 'b': print_ascii(ptr, row);
-					  break;
-			case 'c': print_length(ptr, row);
-					  break;
-			case 'd': print_first_word(ptr, row);
-					  break;
-			default: printf("Error!\n");
-					 break;
-		}
-		printf("\n");
-	}
-	printf("Bye.\n");
-	
-	return 0;
+    printf("Input some strings before EOF (no more than 10):\n");
+    while (row < LIM && s_gets(str[row], SIZE) != NULL)
+    {
+        ptr[row] = str[row];				//è®¾ç½®æŒ‡é’ˆæŒ‡å‘å­—ç¬¦ä¸²
+        row++;
+    }
+    while((choice = get_choice()) != 'q')
+    {
+        printf("\n");
+        switch (choice)
+        {
+            case 'a': print_sour(ptr, row);
+                      break;
+            case 'b': print_ascii(ptr, row);
+                      break;
+            case 'c': print_length(ptr, row);
+                      break;
+            case 'd': print_first_word(ptr, row);
+                      break;
+            default: printf("Error!\n");
+                     break;
+        }
+        printf("\n");
+    }
+    printf("Bye.\n");
+    
+    return 0;
 }
 
-//»ñÈ¡ÓÃ»§Ñ¡Ôñ				
+//è·å–ç”¨æˆ·é€‰æ‹©
 char get_choice(void)
-{	
-	char ch;
-	
-	printf("a. print the sourse strings.     b. print in order of ASCII.\n");
-	printf("c. print in order of length.	 d. print in order of the first word's length.\n");
-	printf("q. quit.\n");
-	printf("Enter a character (a, b, c, d or q):");
-	ch = getchar();
-	while (getchar() != '\n')
-		continue;
-	while (ch < 'a' || ch > 'd' && ch != 'q')
-	{
-		printf("Please input the right option (a, b, c, d or q): ");
-		ch = getchar();
-		while (getchar() != '\n')
-		continue;
-	}
-	return ch;
+{
+    char ch;
+    
+    printf("a. print the sourse strings.     b. print in order of ASCII.\n");
+    printf("c. print in order of length.	 d. print in order of the first word's length.\n");
+    printf("q. quit.\n");
+    printf("Enter a character (a, b, c, d or q):");
+    ch = getchar();
+    while (getchar() != '\n')
+        continue;
+    while (ch < 'a' || ch > 'd' && ch != 'q')
+    {
+        printf("Please input the right option (a, b, c, d or q): ");
+        ch = getchar();
+        while (getchar() != '\n')
+        continue;
+    }
+    return ch;
 }
-	
-//´òÓ¡Ô´×Ö·û´®
+    
+//æ‰“å°æºå­—ç¬¦ä¸²
 void print_sour(char * st[], int n)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < n; i++)
-		puts(st[i]);
+    for (i = 0; i < n; i++)
+        puts(st[i]);
 }
-	
-//°´ASCIIÖĞµÄË³Ğò´òÓ¡×Ö·û´®
+    
+//æŒ‰ASCIIä¸­çš„é¡ºåºæ‰“å°å­—ç¬¦ä¸²
 void print_ascii(char * st[], int n)
 {
-	int i, j;
-	char * temp;
+    int i, j;
+    char * temp;
 
-	for (i = 0; i < n - 1; i++)
-		for (j = i + 1; j < n; j++)
-			if (strcmp(st[i], st[j]) > 0)
-			{
-				temp = st[j];
-				st[j] = st[i];
-				st[i] = temp;
-			}
-	for (i = 0; i < n; i++)
-		puts(st[i]);
+    for (i = 0; i < n - 1; i++)
+        for (j = i + 1; j < n; j++)
+            if (strcmp(st[i], st[j]) > 0)
+            {
+                temp = st[j];
+                st[j] = st[i];
+                st[i] = temp;
+            }
+    for (i = 0; i < n; i++)
+        puts(st[i]);
 }
 
-//°´³¤¶ÈË³Ğò´òÓ¡		
+//æŒ‰é•¿åº¦é¡ºåºæ‰“å°
 void print_length(char * st[], int n)
-{	
-	int i, j;
-	char * temp;
-
-	for (i = 0; i < n - 1; i++)
-		for (j = i + 1; j < n; j++)
-			if (strlen(st[i]) > strlen(st[j]))
-				{
-					temp = st[j];
-					st[j] = st[i];
-					st[i] = temp;
-				}
-	for (i = 0; i < n; i++)
-		puts(st[i]);
-}
-//°´µÚÒ»¸öµ¥´ÊµÄ³¤¶ÈË³Ğò´òÓ¡
-void print_first_word(char * st[], int n)	
 {
-	int i, j;
-	char * temp;
+    int i, j;
+    char * temp;
 
-	for (i = 0; i < n - 1; i++)
-		for (j = i + 1; j < n; j++)
-			if (first_word(st[i]) > first_word(st[j]))
-				{
-					temp = st[j];
-					st[j] = st[i];
-					st[i] = temp;
-				}
-	for (i = 0; i < n; i++)
-	puts(st[i]);
+    for (i = 0; i < n - 1; i++)
+        for (j = i + 1; j < n; j++)
+            if (strlen(st[i]) > strlen(st[j]))
+                {
+                    temp = st[j];
+                    st[j] = st[i];
+                    st[i] = temp;
+                }
+    for (i = 0; i < n; i++)
+        puts(st[i]);
+}
+//æŒ‰ç¬¬ä¸€ä¸ªå•è¯çš„é•¿åº¦é¡ºåºæ‰“å°
+void print_first_word(char * st[], int n)
+{
+    int i, j;
+    char * temp;
+
+    for (i = 0; i < n - 1; i++)
+        for (j = i + 1; j < n; j++)
+            if (first_word(st[i]) > first_word(st[j]))
+                {
+                    temp = st[j];
+                    st[j] = st[i];
+                    st[i] = temp;
+                }
+    for (i = 0; i < n; i++)
+    puts(st[i]);
 }
 
-//¼ÆËãµÚÒ»¸öµ¥´ÊµÄ³¤¶È
+//è®¡ç®—ç¬¬ä¸€ä¸ªå•è¯çš„é•¿åº¦
 int first_word(char * st)
 {
-	int i = 0;
-	int count = 0;
+    int i = 0;
+    int count = 0;
 
-	while (!isalpha(st[i]))
-			i++;
-	while (isalpha(st[i]))
-	{
-		i++;
-		count++;
-	}
+    while (!isalpha(st[i]))
+            i++;
+    while (isalpha(st[i]))
+    {
+        i++;
+        count++;
+    }
 
-	return count;
-}	
-	
-//×Ô¶¨ÒåµÄÊäÈëº¯Êı
+    return count;
+}
+    
+//è‡ªå®šä¹‰çš„è¾“å…¥å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	int i = 0;
-	if (fgets(st, n, stdin) != NULL)	//¼´·µ»ØÖµst²»µÈÓÚNULL
-	{
-		while (st[i] != '\n' && st[i] != '\0')
-			i++;
-		if (st[i] == '\n')
-			st[i] = '\0';
-		else 
-			while (getchar() != '\n')
-				continue;
-		return st;
-	}
-	else
-		return NULL;
+    int i = 0;
+    if (fgets(st, n, stdin) != NULL)	//å³è¿”å›å€¼stä¸ç­‰äºNULL
+    {
+        while (st[i] != '\n' && st[i] != '\0')
+            i++;
+        if (st[i] == '\n')
+            st[i] = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+        return st;
+    }
+    else
+        return NULL;
 }

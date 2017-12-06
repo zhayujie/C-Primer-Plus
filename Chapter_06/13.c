@@ -2,19 +2,19 @@
 #define SIZE 8
 int main(void)
 {
-	int index, count, num[SIZE];
-	 
-	for (index = 0, count = 1; index < SIZE; index++)
-	{
-		count *= 2;
-		num[index] = count; 
-	}											//forÑ­»·½«Êý×éÔªËØÉèÎª2µÄÇ°8´ÎÃÝ
-	
-	index=0;									//³õÊ¼»¯indexµÄÖµ
-	do
-	printf("%d ", num[index++]);
-	while (index < SIZE);						//do whileÑ­»·ÏÔÊ¾Êý×éÔªËØµÄÖµ
-	printf("\n");
+    int index, count, num[SIZE];
+     
+    for (index = 0, count = 1; index < SIZE; index++)
+    {
+        count *= 2;
+        num[index] = count;
+    }											//forå¾ªçŽ¯å°†æ•°ç»„å…ƒç´ è®¾ä¸º2çš„å‰8æ¬¡å¹‚
+    
+    index=0;									//åˆå§‹åŒ–indexçš„å€¼
+    do
+    printf("%d ", num[index++]);
+    while (index < SIZE);						//do whileå¾ªçŽ¯æ˜¾ç¤ºæ•°ç»„å…ƒç´ çš„å€¼
+    printf("\n");
 
-	return 0;
+    return 0;
 }

@@ -1,27 +1,27 @@
 #include <stdio.h>
 int main(void)
 {
-	int div, prime; 
-	int num, count;
-	int flag;
+    int div, prime;
+    int num, count;
+    int flag;
 
-	printf("Input a positive integer: ");
-	scanf("%d", &num);
-	printf("The prime numbers in range:\n");
-	for (prime = 2; prime <= num; prime++)	//Íâ²ãÑ­»·ÏÔÊ¾ËùÓÐËØÊý
-	{	
-		flag = 1;
-		for (div = 2; (div * div) <= prime; div++) 
-		{
-			if (prime % div == 0)
-				flag = 0;
-		}									//ÄÚ²ãÑ­»·¼ìÑéÊÇ·ñÎªËØÊý
-		if (flag)							//ÀûÓÃ±ê¼ÇflagÅÐ¶Ï
-			printf("%d ",prime);			
-	}
-	printf("\n");
-	
-	return 0;
+    printf("Input a positive integer: ");
+    scanf("%d", &num);
+    printf("The prime numbers in range:\n");
+    for (prime = 2; prime <= num; prime++)	//å¤–å±‚å¾ªçŽ¯æ˜¾ç¤ºæ‰€æœ‰ç´ æ•°
+    {
+        flag = 1;
+        for (div = 2; (div * div) <= prime; div++)
+        {
+            if (prime % div == 0)
+                flag = 0;
+        }									//å†…å±‚å¾ªçŽ¯æ£€éªŒæ˜¯å¦ä¸ºç´ æ•°
+        if (flag)							//åˆ©ç”¨æ ‡è®°flagåˆ¤æ–­
+            printf("%d ",prime);
+    }
+    printf("\n");
+    
+    return 0;
 }
 
 

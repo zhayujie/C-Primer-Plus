@@ -1,19 +1,19 @@
 #include <stdio.h>
-#define	INITIAL_NUMBER 5   //³õÊ¼ÅóÓÑÊıÎª5ÈË
-#define DUNBAR_NUMBER 150  //µË°ÍÊı
+#define	INITIAL_NUMBER 5   //åˆå§‹æœ‹å‹æ•°ä¸º5äºº
+#define DUNBAR_NUMBER 150  //é‚“å·´æ•°
 int main(void)
-{	
-	int week;
-	int number = INITIAL_NUMBER;
+{
+    int week;
+    int number = INITIAL_NUMBER;
 
-	for (week = 1; number <= DUNBAR_NUMBER; week++)
-	{
-		number = (number - week) * 2;		//¼ÆËãÃ¿ÖÜµÄÅóÓÑÊıÁ¿
-		printf("After %d week, the number of Rabnud's friends is %d\n", week, number);
-	}
+    for (week = 1; number <= DUNBAR_NUMBER; week++)
+    {
+        number = (number - week) * 2;		//è®¡ç®—æ¯å‘¨çš„æœ‹å‹æ•°é‡
+        printf("After %d week, the number of Rabnud's friends is %d\n", week, number);
+    }
 
-	return 0;
+    return 0;
 }
-	
+    
 
-	
+    

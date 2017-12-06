@@ -5,46 +5,46 @@
 char * * mal_ar(int n);
 int main(void)
 {
-	int words, i;
-	char * * st;
-	
-	printf("How many words do you wish to enter? ");
-	scanf("%d", &words);
-	getchar();					//ÂËµô»Ø³µ
-	printf("Enter %d words now:\n", words);
-	st = mal_ar(words);
-	printf("Here are your words:\n");
-	for (i = 0; i < words; i++)
-	{
-		puts(st[i]);
-		free(st[i]);	//ÊÍ·ÅÃ¿¸öÖ¸ÕëÖ¸ÏòµÄÄÚ´æ
-	}
-	free(st);			//ÊÍ·ÅÖ¸ÕëÊý×é
+    int words, i;
+    char * * st;
+    
+    printf("How many words do you wish to enter? ");
+    scanf("%d", &words);
+    getchar();					//æ»¤æŽ‰å›žè½¦
+    printf("Enter %d words now:\n", words);
+    st = mal_ar(words);
+    printf("Here are your words:\n");
+    for (i = 0; i < words; i++)
+    {
+        puts(st[i]);
+        free(st[i]);	//é‡Šæ”¾æ¯ä¸ªæŒ‡é’ˆæŒ‡å‘çš„å†…å­˜
+    }
+    free(st);			//é‡Šæ”¾æŒ‡é’ˆæ•°ç»„
 
-	return 0;
+    return 0;
 }
 
 char * * mal_ar(int n)
 {
-	char * * pt;
-	int i, j;
-	char ch;
+    char * * pt;
+    int i, j;
+    char ch;
 
-	//¸øn¸öÖ¸Õë·ÖÅä¶¯Ì¬ÄÚ´æ¿Õ¼ä£¬·µ»ØÖ¸ÕëµÄÖ¸Õë
-	pt = (char * *)malloc(n * sizeof(char *));		
-	for (i = 0; i < n; i++)						
-	{ 
-		//¸øÃ¿¸öÖ¸ÕëÖ¸ÏòµÄµØÖ··ÖÅäÄÚ´æ¿Õ¼ä
-		pt[i] = (char *)malloc(SIZE * sizeof(char));
-		//¿ÉÒÔ½öÓÃscanf("%s", pt[i]);
-		while (isspace(ch = getchar()))				//´¦Àíµ¥´ÊÖ®Ç°µÄ¿Õ¸ñ·û
-			continue;
-		pt[i][0] = ch;								//µ¥´ÊÊ××Ö·û
-		j = 1;
-		while (!isspace(pt[i][j] = getchar()))		
-			j++;
-		pt[i][j] = '\0';							//½«Ä©Î²µÄ¿Õ¸ñÌæ»»Îª\0'
-	}	
+    //ç»™nä¸ªæŒ‡é’ˆåˆ†é…åŠ¨æ€å†…å­˜ç©ºé—´ï¼Œè¿”å›žæŒ‡é’ˆçš„æŒ‡é’ˆ
+    pt = (char * *)malloc(n * sizeof(char *));
+    for (i = 0; i < n; i++)
+    {
+        //ç»™æ¯ä¸ªæŒ‡é’ˆæŒ‡å‘çš„åœ°å€åˆ†é…å†…å­˜ç©ºé—´
+        pt[i] = (char *)malloc(SIZE * sizeof(char));
+        //å¯ä»¥ä»…ç”¨scanf("%s", pt[i]);
+        while (isspace(ch = getchar()))				//å¤„ç†å•è¯ä¹‹å‰çš„ç©ºæ ¼ç¬¦
+            continue;
+        pt[i][0] = ch;								//å•è¯é¦–å­—ç¬¦
+        j = 1;
+        while (!isspace(pt[i][j] = getchar()))
+            j++;
+        pt[i][j] = '\0';							//å°†æœ«å°¾çš„ç©ºæ ¼æ›¿æ¢ä¸º\0'
+    }
 
-	return pt;
+    return pt;
 }

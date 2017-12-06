@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include "word.h"
 
-//¾ÖÓòÊý¾ÝÀàÐÍ
+//å±€åŸŸæ•°æ®ç±»åž‹
 typedef struct pair {
-	Trnode * parent;
-	Trnode * child;
+    Trnode * parent;
+    Trnode * child;
 } Pair;
 
-//¾ÖÓòº¯ÊýÉùÃ÷
+//å±€åŸŸå‡½æ•°å£°æ˜Ž
 static Pair SeekItem(const Tree * ptree, Item * pi);
 static int ToLeft(Item * p1, Item * p2);
 static int ToRight(Item * p1, Item * p2);
@@ -19,273 +19,273 @@ static void DeleteNode(Trnode * * ptr);
 static void InOrder(Trnode * root, void (*pfun)(Item item));
 static void DeleteAllNodes(Trnode * root);
 
-//½Ó¿Úº¯Êý
+//æŽ¥å£å‡½æ•°
 
-//³õÊ¼»¯Ê÷
+//åˆå§‹åŒ–æ ‘
 void InitializeTree(Tree * ptree)
 {
-	ptree->root = NULL;
-	ptree->size = 0;
+    ptree->root = NULL;
+    ptree->size = 0;
 }
 
-//È·ÈÏÊ÷ÎªÂú
+//ç¡®è®¤æ ‘ä¸ºæ»¡
 int TreeIsFull(const Tree * ptree)
 {
-	if (ptree->size == MAX)
-		return 1;
-	else 
-		return 0;
+    if (ptree->size == MAX)
+        return 1;
+    else
+        return 0;
 }
 
-//È·ÈÏÊ÷Îª¿Õ
+//ç¡®è®¤æ ‘ä¸ºç©º
 int TreeIsEmpty(const Tree * ptree)
 {
-	if (ptree->size == 0)
-		return 1;
-	else
-		return 0;
+    if (ptree->size == 0)
+        return 1;
+    else
+        return 0;
 }
 
-//Í³¼ÆÏîÊý
+//ç»Ÿè®¡é¡¹æ•°
 int TreeItemCount(const Tree * ptree)
 {
-	return ptree->size;
+    return ptree->size;
 }
 
-//²éÕÒÏî
+//æŸ¥æ‰¾é¡¹
 int InTree(const Tree * ptree, const Item * pi)
 {
-	Pair look;
-	look = SeekItem(ptree, pi);
+    Pair look;
+    look = SeekItem(ptree, pi);
 
-	if (look.child != NULL)
-		return 1;
-	else
-		return 0;
+    if (look.child != NULL)
+        return 1;
+    else
+        return 0;
 }
-	
-//Ìí¼ÓÏî
+    
+//æ·»åŠ é¡¹
 int AddItem(Tree * ptree, const Item * pi)
 {
-	Pair look;
-	Trnode * new_node;
+    Pair look;
+    Trnode * new_node;
 
-	if (TreeIsFull(ptree))
-		return 0;
-	
-	look = SeekItem(ptree, pi);
-	if (look.child != NULL)
-	{
-		(look.child->item.num)++;
-		return 1;
-	}
-	else
-	{
-		new_node = MakeNode(pi);
-		if (new_node == NULL)
-		{
-			fprintf(stderr, "Could't eate node\n");
-			return 0;
-		}
-		ptree->size++;
-		
-		if (ptree->root == NULL)
-			ptree->root = new_node;
-		else
-			AddNode(new_node, ptree->root);
-	}
-	
-	return 1;
+    if (TreeIsFull(ptree))
+        return 0;
+    
+    look = SeekItem(ptree, pi);
+    if (look.child != NULL)
+    {
+        (look.child->item.num)++;
+        return 1;
+    }
+    else
+    {
+        new_node = MakeNode(pi);
+        if (new_node == NULL)
+        {
+            fprintf(stderr, "Could't eate node\n");
+            return 0;
+        }
+        ptree->size++;
+        
+        if (ptree->root == NULL)
+            ptree->root = new_node;
+        else
+            AddNode(new_node, ptree->root);
+    }
+    
+    return 1;
 }
 
-//É¾³ýÏî
+//åˆ é™¤é¡¹
 int DelItem(Tree * ptree, const Item * pi)
 {
-	Pair look;
-	
-	look = SeekItem(ptree, pi);
-	if (look.child == NULL)
-		return 0;
-	
-	if (look.parent == NULL)
-		DeleteNode(&ptree->root);
-	else if (look.parent->left == look.child)
-		DeleteNode(&look.parent->left);
-	else
-		DeleteNode(&look.parent->right);
-	ptree->size--;
+    Pair look;
+    
+    look = SeekItem(ptree, pi);
+    if (look.child == NULL)
+        return 0;
+    
+    if (look.parent == NULL)
+        DeleteNode(&ptree->root);
+    else if (look.parent->left == look.child)
+        DeleteNode(&look.parent->left);
+    else
+        DeleteNode(&look.parent->right);
+    ptree->size--;
 
-	return 1;
+    return 1;
 }
 
-//±éÀúÊ÷
+//éåŽ†æ ‘
 void Traverse(const Tree * ptree, void (*pfun)(Item item))
 {
-	if (ptree != NULL)
-		InOrder(ptree->root, pfun);
+    if (ptree != NULL)
+        InOrder(ptree->root, pfun);
 }
 
-//Çå¿ÕÊ÷
+//æ¸…ç©ºæ ‘
 void DeleteAll(Tree * ptree)
 {
-	if (ptree != NULL)
-		DeleteAllNodes(ptree->root);
-	ptree->root = NULL;
-	ptree->size = 0;
+    if (ptree != NULL)
+        DeleteAllNodes(ptree->root);
+    ptree->root = NULL;
+    ptree->size = 0;
 }
 
-//Ã¿Ò»Ïî¼ÆÊý
+//æ¯ä¸€é¡¹è®¡æ•°
 int ItemCount(const Tree * ptree, const Item * item)
 {
-	Pair look;
+    Pair look;
 
-	look = SeekItem(ptree, item);
-	if (look.child == NULL)
-		return 0;
-	else
-		return look.child->item.num;
+    look = SeekItem(ptree, item);
+    if (look.child == NULL)
+        return 0;
+    else
+        return look.child->item.num;
 }
 
 
 
-//¾ÖÓòº¯Êý
-//Ñ°ÕÒÏî
+//å±€åŸŸå‡½æ•°
+//å¯»æ‰¾é¡¹
 static Pair SeekItem(const Tree * ptree, const Item * pi)
 {
-	Pair look;
-	look.parent = NULL;
-	look.child = ptree->root;
-	
-	if (look.child == NULL)
-		return look;
+    Pair look;
+    look.parent = NULL;
+    look.child = ptree->root;
+    
+    if (look.child == NULL)
+        return look;
 
-	while (look.child != NULL)
-	{
-		if (ToLeft(pi, &(look.child->item)))
-		{
-			look.parent = look.child;
-			look.child = look.child->left;
-		}
-		else if (ToRight(pi, &(look.child->item)))
-		{
-			look.parent = look.child;
-			look.child = look.child->right;
-		}
-		else
-			break;
-	}
+    while (look.child != NULL)
+    {
+        if (ToLeft(pi, &(look.child->item)))
+        {
+            look.parent = look.child;
+            look.child = look.child->left;
+        }
+        else if (ToRight(pi, &(look.child->item)))
+        {
+            look.parent = look.child;
+            look.child = look.child->right;
+        }
+        else
+            break;
+    }
 
-	return look;
+    return look;
 }
 
-//ÏîÔÚ×ó±ß
+//é¡¹åœ¨å·¦è¾¹
 static int ToLeft(Item * p1, Item * p2)
 {
-	if (strcmp(p1->word, p2->word) < 0)
-		return 1;
-	else 
-		return 0;
+    if (strcmp(p1->word, p2->word) < 0)
+        return 1;
+    else
+        return 0;
 }
 
-//ÏîÔÚÓÒ±ß
+//é¡¹åœ¨å³è¾¹
 static int ToRight(Item * p1, Item * p2)
 {
-	if (strcmp(p1->word, p2->word) > 0)
-		return 1;
-	else 
-		return 0;
+    if (strcmp(p1->word, p2->word) > 0)
+        return 1;
+    else
+        return 0;
 }
 
 static Trnode * MakeNode(Item * item)
 {
-	Trnode * pnode;
+    Trnode * pnode;
 
-	pnode = (Trnode *) malloc(sizeof(Trnode));
-	if (pnode != NULL)
-	{
-		pnode->item = *item;		
-		pnode->left = NULL;
-		pnode->right = NULL;
-	}
+    pnode = (Trnode *) malloc(sizeof(Trnode));
+    if (pnode != NULL)
+    {
+        pnode->item = *item;
+        pnode->left = NULL;
+        pnode->right = NULL;
+    }
 
-	return pnode;
+    return pnode;
 }
 
 static void AddNode(Trnode * new_node, Trnode * root)
 {
-	if (ToLeft(&(new_node->item), &(root->item)))
-	{
-		if (root->left == NULL)
-			root->left = new_node;
-		else
-			AddNode(new_node, root->left);
-	}
+    if (ToLeft(&(new_node->item), &(root->item)))
+    {
+        if (root->left == NULL)
+            root->left = new_node;
+        else
+            AddNode(new_node, root->left);
+    }
 
-	else if (ToRight(&(new_node->item), &(root->item)))
-	{
-		if (root->right == NULL)
-			root->right = new_node;
-		else
-			AddNode(new_node, root->right);
-	}
+    else if (ToRight(&(new_node->item), &(root->item)))
+    {
+        if (root->right == NULL)
+            root->right = new_node;
+        else
+            AddNode(new_node, root->right);
+    }
 
-	else
-	{
-		fprintf(stderr, "location error in AddNode().\n");
-		exit(1);
-	}
+    else
+    {
+        fprintf(stderr, "location error in AddNode().\n");
+        exit(1);
+    }
 }
 
-//ptr ÊÇ¸¸½ÚµãÖ¸ÏòÄ¿±ê½ÚµãµÄÖ¸ÕëµÄµØÖ·
+//ptr æ˜¯çˆ¶èŠ‚ç‚¹æŒ‡å‘ç›®æ ‡èŠ‚ç‚¹çš„æŒ‡é’ˆçš„åœ°å€
 static void DeleteNode(Trnode * * ptr)
 {
-	Trnode * pnode;
+    Trnode * pnode;
 
-	if ((*ptr)->left == NULL)
-	{
-		pnode = *ptr;
-		*ptr = (*ptr)->right;
-		free(pnode);
-	}
+    if ((*ptr)->left == NULL)
+    {
+        pnode = *ptr;
+        *ptr = (*ptr)->right;
+        free(pnode);
+    }
 
-	else if ((*ptr)->right == NULL)
-	{
-		pnode = *ptr;
-		*ptr = (*ptr)->left;
-		free(pnode);
-	}
+    else if ((*ptr)->right == NULL)
+    {
+        pnode = *ptr;
+        *ptr = (*ptr)->left;
+        free(pnode);
+    }
 
-	else
-	{
-		for (pnode = (*ptr)->left; pnode->right != NULL; pnode = pnode->right)
-			continue;
-		pnode->right = (*ptr)->right;
-		pnode = (*ptr);
-		*ptr = (*ptr)->left;
-		free(pnode);
-	}
+    else
+    {
+        for (pnode = (*ptr)->left; pnode->right != NULL; pnode = pnode->right)
+            continue;
+        pnode->right = (*ptr)->right;
+        pnode = (*ptr);
+        *ptr = (*ptr)->left;
+        free(pnode);
+    }
 }
 
 static void InOrder(Trnode * root, void (*pfun)(Item item))
 {
-	if (root != NULL)
-	{
-		InOrder(root->left, pfun);
-		(*pfun)(root->item);
-		InOrder(root->right, pfun);
-	}
+    if (root != NULL)
+    {
+        InOrder(root->left, pfun);
+        (*pfun)(root->item);
+        InOrder(root->right, pfun);
+    }
 }
 
 static void DeleteAllNodes(Trnode * root)
 {
-	Trnode * pright;
+    Trnode * pright;
 
-	if (root != NULL)
-	{
-		pright = root->right;
-		DeleteAllNodes(root->left);
-		free(root);
-		DeleteAllNodes(pright);
-	}
+    if (root != NULL)
+    {
+        pright = root->right;
+        DeleteAllNodes(root->left);
+        free(root);
+        DeleteAllNodes(pright);
+    }
 }
 

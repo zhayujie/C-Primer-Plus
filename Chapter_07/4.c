@@ -1,24 +1,24 @@
 #include <stdio.h>
 int main(void)
 {
-	char ch;
-	int n_repl = 0;         //Ìæ»»´ÎÊı
-	
-	printf("Enter some texts(# to quit):\n");
-	while ((ch = getchar()) != '#') {
-		if (ch == '.')
-		{
-			ch = '!';
-			n_repl++;
-		}					//Ìæ»»¾äºÅ
-		else if (ch == '!')
-		{
-			printf("!");
-			n_repl++;
-		}					//Ìæ»»¸ĞÌ¾ºÅ
-		printf("%c", ch);
-	}
-	printf("\n%d substitutions were made.\n", n_repl);
-	
-	return 0;
+    char ch;
+    int n_repl = 0;         //æ›¿æ¢æ¬¡æ•°
+    
+    printf("Enter some texts(# to quit):\n");
+    while ((ch = getchar()) != '#') {
+        if (ch == '.')
+        {
+            ch = '!';
+            n_repl++;
+        }					//æ›¿æ¢å¥å·
+        else if (ch == '!')
+        {
+            printf("!");
+            n_repl++;
+        }					//æ›¿æ¢æ„Ÿå¹å·
+        printf("%c", ch);
+    }
+    printf("\n%d substitutions were made.\n", n_repl);
+    
+    return 0;
 }

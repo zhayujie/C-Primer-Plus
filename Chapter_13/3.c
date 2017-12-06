@@ -6,52 +6,52 @@ char * s_gets(char * st, int n);
 
 int main(void)
 {
-	FILE * fs;			//Ô­Ê¼ÎÄ¼şÖ¸Õë
-	FILE * ft;			//Ä¿±êÎÄ¼şÖ¸Õë
-	char name_s[SIZE];
-	char name_t[SIZE];
-	char ch;
-	
-	//ÊäÈëÔ­Ê¼ÎÄ¼şºÍÄ¿±êÎÄ¼şÃû
-	fprintf(stdout, "Please enter the source file name:\n");
-	s_gets(name_s, SIZE);
-	fprintf(stdout, "Please enter the target file name:\n");
-	s_gets(name_t, SIZE);
-	
-	//´ò¿ªÔ­Ê¼ÎÄ¼şºÍÄ¿±êÎÄ¼ş
-	if ((fs = fopen(name_s, "r")) == NULL)
-		fprintf(stderr, "Could not open the %s\n", name_s);
-	if ((ft = fopen(name_t, "w")) == NULL)
-		fprintf(stderr, "Could not open the %s\n", name_t);
-	
-	//¿½±´Êı¾İ
-	while ((ch = getc(fs)) != EOF)
-		putc(toupper(ch), ft);
-	
-	fclose(fs);
-	fclose(ft);
+    FILE * fs;			//åŸå§‹æ–‡ä»¶æŒ‡é’ˆ
+    FILE * ft;			//ç›®æ ‡æ–‡ä»¶æŒ‡é’ˆ
+    char name_s[SIZE];
+    char name_t[SIZE];
+    char ch;
+    
+    //è¾“å…¥åŸå§‹æ–‡ä»¶å’Œç›®æ ‡æ–‡ä»¶å
+    fprintf(stdout, "Please enter the source file name:\n");
+    s_gets(name_s, SIZE);
+    fprintf(stdout, "Please enter the target file name:\n");
+    s_gets(name_t, SIZE);
+    
+    //æ‰“å¼€åŸå§‹æ–‡ä»¶å’Œç›®æ ‡æ–‡ä»¶
+    if ((fs = fopen(name_s, "r")) == NULL)
+        fprintf(stderr, "Could not open the %s\n", name_s);
+    if ((ft = fopen(name_t, "w")) == NULL)
+        fprintf(stderr, "Could not open the %s\n", name_t);
+    
+    //æ‹·è´æ•°æ®
+    while ((ch = getc(fs)) != EOF)
+        putc(toupper(ch), ft);
+    
+    fclose(fs);
+    fclose(ft);
 
-	return 0;
+    return 0;
 }
-	
+    
 
 
-//×Ô¶¨Òå¶ÁÈ¡ÎÄ¼şÃûµÄº¯Êı
+//è‡ªå®šä¹‰è¯»å–æ–‡ä»¶åçš„å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	char * find;
-	char * ret_val;
+    char * find;
+    char * ret_val;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');	//²éÕÒ»»ĞĞ·û
-		if (find)
-			*find = '\0';			//Ìæ»»Îª¿Õ×Ö·û
-		else
-			while (getchar() != '\n')
-				continue;			//´¦Àí¶àÓàÊäÈë
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');	//æŸ¥æ‰¾æ¢è¡Œç¬¦
+        if (find)
+            *find = '\0';			//æ›¿æ¢ä¸ºç©ºå­—ç¬¦
+        else
+            while (getchar() != '\n')
+                continue;			//å¤„ç†å¤šä½™è¾“å…¥
+    }
 
-	return ret_val;
+    return ret_val;
 }

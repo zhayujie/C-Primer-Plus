@@ -1,123 +1,123 @@
 #include <stdio.h>
 #include <ctype.h>
-#define ARTICHOKE 2.05		//Ñó¼»2.05ÃÀÔª/°õ
-#define BEET 1.15			//Ìð²Ë1.15ÃÀÔª/°õ
-#define CARROT 1.09			//ºúÂÜ²·1.09ÃÀÔª/°õ
-#define	DISCOUNT_LIMIT 100	
-//°ü×°·ÑºÍÔË·Ñ´òÕÛÒªÇó¶©µ¥100ÃÀÔª
-#define DISCOUNT_RATE 0.05	//ÕÛ¿ÛÎª%5
+#define ARTICHOKE 2.05		//æ´‹è“Ÿ2.05ç¾Žå…ƒ/ç£…
+#define BEET 1.15			//ç”œèœ1.15ç¾Žå…ƒ/ç£…
+#define CARROT 1.09			//èƒ¡èåœ1.09ç¾Žå…ƒ/ç£…
+#define	DISCOUNT_LIMIT 100
+//åŒ…è£…è´¹å’Œè¿è´¹æ‰“æŠ˜è¦æ±‚è®¢å•100ç¾Žå…ƒ
+#define DISCOUNT_RATE 0.05	//æŠ˜æ‰£ä¸º%5
 #define BREAK1 5
-#define BREAK2 20			//×°ÔË·ÑµÄ·Ö½çµã
+#define BREAK2 20			//è£…è¿è´¹çš„åˆ†ç•Œç‚¹
 #define	FEE1 6.5
 #define	FEE2 14
-#define FEE3_RATE 0.5		
-//²»Í¬ÖØÁ¿Çø¼äµÄ×°ÔË·Ñ£¬ÆäÖÐ³¬¹ý20°õµÄÃ¿ÐøÖØÒ»°õ
-//Ôö¼Ó0.5Ôª
+#define FEE3_RATE 0.5
+//ä¸åŒé‡é‡åŒºé—´çš„è£…è¿è´¹ï¼Œå…¶ä¸­è¶…è¿‡20ç£…çš„æ¯ç»­é‡ä¸€ç£…
+//å¢žåŠ 0.5å…ƒ
 int main(void)
 {
-	double weight;
-	double weight_artichoke = 0;
-	double weight_beet = 0;
-	double weight_carrot = 0;	//¹ºÂòÈýÖÖÊß²ËµÄÖØÁ¿
-	double total_weight;	//×ÜÖØÁ¿
-	double veg_cost;		//ÈýÖÖÊß²Ë×Ü¹²»¨·Ñ
-	double order_cost;		//¶©µ¥×Ü¶î
-	double total_cost;		//·ÑÓÃ×Ü¶î
-	double pack_tran_fee;	//×°ÔË·Ñ
-	double discount;
-	int count = 0;
-	char ch;
+    double weight;
+    double weight_artichoke = 0;
+    double weight_beet = 0;
+    double weight_carrot = 0;	//è´­ä¹°ä¸‰ç§è”¬èœçš„é‡é‡
+    double total_weight;	//æ€»é‡é‡
+    double veg_cost;		//ä¸‰ç§è”¬èœæ€»å…±èŠ±è´¹
+    double order_cost;		//è®¢å•æ€»é¢
+    double total_cost;		//è´¹ç”¨æ€»é¢
+    double pack_tran_fee;	//è£…è¿è´¹
+    double discount;
+    int count = 0;
+    char ch;
 
-	printf("Please select the vegetables you want to buy:\n");
-	printf("a: artichoke  $%.2f/lb\n", ARTICHOKE);
-	printf("b: beet       $%.2f/lb\n", BEET);
-	printf("c: carrot     $%.2f/lb\n", CARROT);
-	printf("q: quit.\n");
-	//´òÓ¡Ñ¡ÔñÐÅÏ¢
-	while ((ch = tolower(getchar())) != 'q')
-	{
-	//	if (ch == '\n')
-	//		continue;					//ÂËµô»Ø³µ
-		switch (ch)
-		{
-			case 'a': printf("Input the weight of artichoke in pound: ");
-					  scanf("%lf", &weight);
-					  weight_artichoke += weight;
-					  count++;
-					  printf("Continue entering a, b, c or q: ");
-					  break;
-			case 'b': printf("Input the weight of beet in pound: ");
-					  scanf("%lf", &weight);
-					  weight_beet += weight;
-					  count++;
-					  printf("Continue entering a, b, c or q: ");
-					  break;
-			case 'c': printf("Input the weight of carrot in pound: ");
-					  scanf("%lf", &weight);
-					  weight_carrot += weight;
-					  count++;
-					  printf("Continue entering a, b, c or q: ");
-					  break;
-			default: printf("Please enter the right character.");
-		}
-		while (getchar () != '\n')
-			continue;					//ÂËµôÊäÈëÖØÁ¿ºóÃæµÄËùÓÐ×Ö·û
-		
-	}
-	if (!count)
-	{
-		printf("Bye.\n");
-		return 0;
-	}										//¿ªÊ¼Êä³öq£¬Ö±½ÓÍË³ö
-	total_weight = weight_artichoke + weight_beet + weight_carrot;
-	veg_cost = weight_artichoke * ARTICHOKE + weight_beet * BEET
-				+ weight_carrot * CARROT;
-	discount = 0;
-	if (veg_cost >= DISCOUNT_LIMIT)
-	{
-		discount = veg_cost * DISCOUNT_RATE;
-		order_cost = veg_cost - discount;
-	}                                
-	else
-		order_cost = veg_cost;				//ÕÛ¿Û¼ÆËã
-	
-	if (total_weight <= BREAK1)
-		pack_tran_fee = FEE1;
-	else if (total_weight <= BREAK2)
-		pack_tran_fee = FEE2;
-	else
-		pack_tran_fee = FEE2 + (total_weight - BREAK2) * FEE3_RATE;
-	//×°ÔË·Ñ¼ÆËã
-	total_cost = order_cost + pack_tran_fee;
-	
-	printf("\nHere is what you choose:\n");
-	if (weight_artichoke) {
-		printf("artichoke   Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n", 
-				ARTICHOKE, weight_artichoke, weight_artichoke * ARTICHOKE);
-	}
-	if (weight_beet) {
-		printf("beet        Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n", 
-				BEET, weight_beet, weight_beet * BEET);
-	}
-	if (weight_carrot) {
-		printf("carrot      Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n", 
-				CARROT, weight_carrot, weight_carrot * CARROT);
-	}
-	printf("The order cost: $%.2f\n", veg_cost);
+    printf("Please select the vegetables you want to buy:\n");
+    printf("a: artichoke  $%.2f/lb\n", ARTICHOKE);
+    printf("b: beet       $%.2f/lb\n", BEET);
+    printf("c: carrot     $%.2f/lb\n", CARROT);
+    printf("q: quit.\n");
+    //æ‰“å°é€‰æ‹©ä¿¡æ¯
+    while ((ch = tolower(getchar())) != 'q')
+    {
+    //	if (ch == '\n')
+    //		continue;					//æ»¤æŽ‰å›žè½¦
+        switch (ch)
+        {
+            case 'a': printf("Input the weight of artichoke in pound: ");
+                      scanf("%lf", &weight);
+                      weight_artichoke += weight;
+                      count++;
+                      printf("Continue entering a, b, c or q: ");
+                      break;
+            case 'b': printf("Input the weight of beet in pound: ");
+                      scanf("%lf", &weight);
+                      weight_beet += weight;
+                      count++;
+                      printf("Continue entering a, b, c or q: ");
+                      break;
+            case 'c': printf("Input the weight of carrot in pound: ");
+                      scanf("%lf", &weight);
+                      weight_carrot += weight;
+                      count++;
+                      printf("Continue entering a, b, c or q: ");
+                      break;
+            default: printf("Please enter the right character.");
+        }
+        while (getchar () != '\n')
+            continue;					//æ»¤æŽ‰è¾“å…¥é‡é‡åŽé¢çš„æ‰€æœ‰å­—ç¬¦
+        
+    }
+    if (!count)
+    {
+        printf("Bye.\n");
+        return 0;
+    }										//å¼€å§‹è¾“å‡ºqï¼Œç›´æŽ¥é€€å‡º
+    total_weight = weight_artichoke + weight_beet + weight_carrot;
+    veg_cost = weight_artichoke * ARTICHOKE + weight_beet * BEET
+                + weight_carrot * CARROT;
+    discount = 0;
+    if (veg_cost >= DISCOUNT_LIMIT)
+    {
+        discount = veg_cost * DISCOUNT_RATE;
+        order_cost = veg_cost - discount;
+    }
+    else
+        order_cost = veg_cost;				//æŠ˜æ‰£è®¡ç®—
+    
+    if (total_weight <= BREAK1)
+        pack_tran_fee = FEE1;
+    else if (total_weight <= BREAK2)
+        pack_tran_fee = FEE2;
+    else
+        pack_tran_fee = FEE2 + (total_weight - BREAK2) * FEE3_RATE;
+    //è£…è¿è´¹è®¡ç®—
+    total_cost = order_cost + pack_tran_fee;
+    
+    printf("\nHere is what you choose:\n");
+    if (weight_artichoke) {
+        printf("artichoke   Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n",
+                ARTICHOKE, weight_artichoke, weight_artichoke * ARTICHOKE);
+    }
+    if (weight_beet) {
+        printf("beet        Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n",
+                BEET, weight_beet, weight_beet * BEET);
+    }
+    if (weight_carrot) {
+        printf("carrot      Price: $%.2f/lb  weight: %.2f pounds  cost: $%.2f\n",
+                CARROT, weight_carrot, weight_carrot * CARROT);
+    }
+    printf("The order cost: $%.2f\n", veg_cost);
 
-	if (discount)
-		printf ("You have %%%.f discount, and the reduced money is $%.2f\n",
-				DISCOUNT_RATE * 100, discount);
-	printf("The packing and transpoting fee is $%.2f\n", pack_tran_fee);
-	printf("The total cost is $%.2f\n", total_cost);	
-	//Êä³ö¶©µ¥ÐÅÏ¢
+    if (discount)
+        printf ("You have %%%.f discount, and the reduced money is $%.2f\n",
+                DISCOUNT_RATE * 100, discount);
+    printf("The packing and transpoting fee is $%.2f\n", pack_tran_fee);
+    printf("The total cost is $%.2f\n", total_cost);
+    //è¾“å‡ºè®¢å•ä¿¡æ¯
 
-	return 0;
+    return 0;
 }
-	
+    
 
 
 
 
 
-		
+        

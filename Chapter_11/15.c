@@ -1,25 +1,25 @@
 #include <stdio.h>
-#include <ctype.h>		
+#include <ctype.h>
 int myatoi(char * st);
 int main(void)
 {
-	char str[40];
-	gets(str);
-	printf("%d\n", myatoi(str));
+    char str[40];
+    gets(str);
+    printf("%d\n", myatoi(str));
 }
 
 int myatoi(char * st)
-{ 
-	int sum = 0; 
+{
+    int sum = 0;
 
-	while (*st)
-	{	//°Ñ×Ö·ûÊı×ÖÖğÎ»×ª»¯ÎªÊıÖµ
-		if (isdigit(*st))
-			sum = 10 * sum + (*st - '0');
-		else
-			return 0;		//²»ÊÇ´¿Êı×ÖÔò·µ»Ø0
-		st++;
-	}
+    while (*st)
+    {	//æŠŠå­—ç¬¦æ•°å­—é€ä½è½¬åŒ–ä¸ºæ•°å€¼
+        if (isdigit(*st))
+            sum = 10 * sum + (*st - '0');
+        else
+            return 0;		//ä¸æ˜¯çº¯æ•°å­—åˆ™è¿”å›0
+        st++;
+    }
 
-	return sum;
+    return sum;
 }

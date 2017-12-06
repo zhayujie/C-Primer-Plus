@@ -3,62 +3,62 @@
 #include <limits.h>
 #define SIZE 5
 
-int btoi(char * st);				//¶ş½øÖÆ×Ö·û´®×ª»¯ÎªÕûÊıµÄº¯Êı
-char * itob(char * st, int n);		//ÕûÊı×ª»¯Îª¶ş½øÖÆ×Ö·û´®µÄº¯Êı
-void show_bstr(const char * st);	//4Î»Ò»×éÏÔÊ¾¶ş½øÖÆ×Ö·û´®
+int btoi(char * st);				//äºŒè¿›åˆ¶å­—ç¬¦ä¸²è½¬åŒ–ä¸ºæ•´æ•°çš„å‡½æ•°
+char * itob(char * st, int n);		//æ•´æ•°è½¬åŒ–ä¸ºäºŒè¿›åˆ¶å­—ç¬¦ä¸²çš„å‡½æ•°
+void show_bstr(const char * st);	//4ä½ä¸€ç»„æ˜¾ç¤ºäºŒè¿›åˆ¶å­—ç¬¦ä¸²
 
 int main(int argc, char * argv[])
 {
-	int num1, num2;
-	char bin_st[CHAR_BIT * sizeof(int) + 1];
+    int num1, num2;
+    char bin_st[CHAR_BIT * sizeof(int) + 1];
 
-	if (argc != 3)
-	{
-		fprintf(stderr, "The number of arguments is wrong.\n");
-		exit(EXIT_FAILURE);
-	}
-	num1 = btoi(argv[1]);
-	num2 = btoi(argv[2]);
-	show_bstr(itob(bin_st, ~num1));
-	show_bstr(itob(bin_st, ~num2));
-	show_bstr(itob(bin_st, num1 & num2));
-	show_bstr(itob(bin_st, num1 | num2));
-	show_bstr(itob(bin_st, num1 ^ num2));
+    if (argc != 3)
+    {
+        fprintf(stderr, "The number of arguments is wrong.\n");
+        exit(EXIT_FAILURE);
+    }
+    num1 = btoi(argv[1]);
+    num2 = btoi(argv[2]);
+    show_bstr(itob(bin_st, ~num1));
+    show_bstr(itob(bin_st, ~num2));
+    show_bstr(itob(bin_st, num1 & num2));
+    show_bstr(itob(bin_st, num1 | num2));
+    show_bstr(itob(bin_st, num1 ^ num2));
 
-	return 0;
+    return 0;
 }
 
 int btoi(char * st)
 {
-	int num = 0;
+    int num = 0;
 
-	while (*st)
-		num = (num << 1) + (*st++ - '0');
+    while (*st)
+        num = (num << 1) + (*st++ - '0');
 
-	return num;
+    return num;
 }
 
 char * itob(char * st, int n)
 {
-	int i;
-	const static int size = CHAR_BIT * sizeof(int);
-	
-	for (i = size - 1; i >= 0; i--, n >>= 1)
-		st[i] = (01 & n) + '0';
-	st[size] = '\0';
+    int i;
+    const static int size = CHAR_BIT * sizeof(int);
+    
+    for (i = size - 1; i >= 0; i--, n >>= 1)
+        st[i] = (01 & n) + '0';
+    st[size] = '\0';
 
-	return st;
+    return st;
 }
 
 void show_bstr(const char * st)
 {
-	int i = 0;
+    int i = 0;
 
-	while (st[i])
-	{
-		putchar(st[i]);
-		if (++i % 4 == 0 && st[i])
-			putchar(' ');
-	}
-	printf("\n");
+    while (st[i])
+    {
+        putchar(st[i]);
+        if (++i % 4 == 0 && st[i])
+            putchar(' ');
+    }
+    printf("\n");
 }

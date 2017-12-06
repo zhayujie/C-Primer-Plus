@@ -1,14 +1,14 @@
 #include <stdio.h>
-#define INITIAL_MONEY 100			//ÕË»§³õÊ¼½ğ¶îÎª100ÍòÔª
-#define ANNUAL_RATE 0.08			//ÄêÀûÂÊÎª8%
+#define INITIAL_MONEY 100			//è´¦æˆ·åˆå§‹é‡‘é¢ä¸º100ä¸‡å…ƒ
+#define ANNUAL_RATE 0.08			//å¹´åˆ©ç‡ä¸º8%
 int main(void)
 {
-	int year;
-	double money;
-	
-	for(year = 1, money=INITIAL_MONEY; money>0; year++)		
-		money += money * ANNUAL_RATE - 10;			//¼ÆËãÃ¿ÄêÄêÖÕµÄÕË»§Óà¶î
-	printf("After %d years, Chuckie will draw all money from his account.\n", year);
+    int year;
+    double money;
+    
+    for(year = 1, money=INITIAL_MONEY; money>0; year++)
+        money += money * ANNUAL_RATE - 10;			//è®¡ç®—æ¯å¹´å¹´ç»ˆçš„è´¦æˆ·ä½™é¢
+    printf("After %d years, Chuckie will draw all money from his account.\n", year);
 
-	return 0;
+    return 0;
 }

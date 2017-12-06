@@ -7,269 +7,269 @@
 #define MAXFL 5
 
 struct seat {
-	int num;
-	int isassign;
-	char fname[LEN];
-	char lname[LEN];
+    int num;
+    int isassign;
+    char fname[LEN];
+    char lname[LEN];
 };
 
-void read_file(struct seat * ps);		//´ÓÎÄ¼ş¶ÁÈ¡
-void initialize(struct seat * ps);		//³õÊ¼»¯½á¹¹
-char get_flight(void);				//ÓÃ»§Ñ¡Ôñº½°à
-char get_choice(void);					//ÓÃ»§ÊäÈëÑ¡Ôñ
-void show_number(struct seat * ps);		//¿ÕÎ»ÖÃµÄ¸öÊı
-void show_empty(struct seat * ps);		//´òÓ¡ËùÓĞ¿ÕÎ»ÖÃ
-void show_list(struct seat * ps);		//´òÓ¡ËùÓĞÎ»ÖÃĞÅÏ¢
-void assign_seat(struct seat * ps);		//Ô¤¶©Ò»¸öÎ»ÖÃ
-void delete_seat(struct seat * ps);		//É¾³ıÒ»¸öÎ»ÖÃ
-void write_file(struct seat * ps);		//Êı¾İĞ´ÈëÎÄ¼ş
-char * s_gets(char * st, int n);		//ÊäÈë×Ö·û´®
-void is_confirmed(void);				//È·ÈÏ×ùÎ»·ÖÅä
+void read_file(struct seat * ps);		//ä»æ–‡ä»¶è¯»å–
+void initialize(struct seat * ps);		//åˆå§‹åŒ–ç»“æ„
+char get_flight(void);				//ç”¨æˆ·é€‰æ‹©èˆªç­
+char get_choice(void);					//ç”¨æˆ·è¾“å…¥é€‰æ‹©
+void show_number(struct seat * ps);		//ç©ºä½ç½®çš„ä¸ªæ•°
+void show_empty(struct seat * ps);		//æ‰“å°æ‰€æœ‰ç©ºä½ç½®
+void show_list(struct seat * ps);		//æ‰“å°æ‰€æœ‰ä½ç½®ä¿¡æ¯
+void assign_seat(struct seat * ps);		//é¢„è®¢ä¸€ä¸ªä½ç½®
+void delete_seat(struct seat * ps);		//åˆ é™¤ä¸€ä¸ªä½ç½®
+void write_file(struct seat * ps);		//æ•°æ®å†™å…¥æ–‡ä»¶
+char * s_gets(char * st, int n);		//è¾“å…¥å­—ç¬¦ä¸²
+void is_confirmed(void);				//ç¡®è®¤åº§ä½åˆ†é…
 
-//È«¾Ö±äÁ¿£¬ÖµÎª1Ê±±íÊ¾±»È·ÈÏ£¬ÖµÎª0Ê±Î´È·ÈÏ
-int isconf;		
-char flight_num[MAXFL];					
+//å…¨å±€å˜é‡ï¼Œå€¼ä¸º1æ—¶è¡¨ç¤ºè¢«ç¡®è®¤ï¼Œå€¼ä¸º0æ—¶æœªç¡®è®¤
+int isconf;
+char flight_num[MAXFL];
 
 int main(void)
 {
-	char ch, flight;	
-	struct seat customer[MAX];
-	
-	initialize(customer);
-	read_file(customer);
-	
-	//ÓÃ»§ÊäÈëÑ¡Ïî
-	while ((flight = get_flight()) != 'q')
-	{
-		isconf = 0;
-		while ((ch = get_choice()) != 'g')
-		{
-			switch (ch)
-			{
-				case 'a': show_number(customer);
-						  break;
-				case 'b': show_empty(customer);
-						  break;
-				case 'c': show_list(customer);
-						  break;
-				case 'd': assign_seat(customer);
-						  break;
-				case 'e': delete_seat(customer);
-						  break;
-				case 'f': is_confirmed();
-						  break;
-				default: printf("Program error.\n");
-						break;
-			}
-		}
-	//½«Êı¾İÊä³öÖÁÎÄ¼şÖĞ
-	if (isconf)
-		write_file(customer);
-	}
-	
-	
-	return 0;
+    char ch, flight;
+    struct seat customer[MAX];
+    
+    initialize(customer);
+    read_file(customer);
+    
+    //ç”¨æˆ·è¾“å…¥é€‰é¡¹
+    while ((flight = get_flight()) != 'q')
+    {
+        isconf = 0;
+        while ((ch = get_choice()) != 'g')
+        {
+            switch (ch)
+            {
+                case 'a': show_number(customer);
+                          break;
+                case 'b': show_empty(customer);
+                          break;
+                case 'c': show_list(customer);
+                          break;
+                case 'd': assign_seat(customer);
+                          break;
+                case 'e': delete_seat(customer);
+                          break;
+                case 'f': is_confirmed();
+                          break;
+                default: printf("Program error.\n");
+                        break;
+            }
+        }
+    //å°†æ•°æ®è¾“å‡ºè‡³æ–‡ä»¶ä¸­
+    if (isconf)
+        write_file(customer);
+    }
+    
+    
+    return 0;
 }
-	
+    
 void initialize(struct seat * ps)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < MAX; i++)
-	{
-		ps[i].num = i + 1;
-		ps[i].isassign = 0;
-		strcpy(ps[i].fname, "");
-		strcpy(ps[i].lname, "");
-	}
+    for (i = 0; i < MAX; i++)
+    {
+        ps[i].num = i + 1;
+        ps[i].isassign = 0;
+        strcpy(ps[i].fname, "");
+        strcpy(ps[i].lname, "");
+    }
 }
 
 void read_file(struct seat * ps)
 {
-	FILE * fp;
-	
-	
-	if((fp = fopen("seat.txt", "a+b")) == NULL)
-	{
-		fprintf(stderr, "Can't open seat.txt.\n");
-		exit(EXIT_FAILURE);
-	} 
-	fread(ps, sizeof(struct seat), MAX, fp);
+    FILE * fp;
+    
+    
+    if((fp = fopen("seat.txt", "a+b")) == NULL)
+    {
+        fprintf(stderr, "Can't open seat.txt.\n");
+        exit(EXIT_FAILURE);
+    }
+    fread(ps, sizeof(struct seat), MAX, fp);
 }
 
 char get_flight(void)
 {
-	char ch;
+    char ch;
 
-	printf("To choose a flight, enter its letter labal:\n");
-	printf("a). 102             b). 311\n");
-	printf("c). 444             d). 519\n");
-	printf("q). quit.\n");
-	while ((ch = getchar()) < 'a' || ch > 'd' && ch != 'q')
-	{
-		while (getchar() != '\n')
-			continue;
-		printf("Please input the right letter (a, b, c, d or q).\n");
-	}
-	while (getchar() != '\n')
-		continue;
-	if (ch == 'a')
-		strcpy(flight_num, "102");
-	else if (ch == 'b')
-		strcpy(flight_num, "311");
-	else if (ch == 'c')
-		strcpy(flight_num, "444");
-	else if (ch == 'd')
-		strcpy(flight_num, "519");
+    printf("To choose a flight, enter its letter labal:\n");
+    printf("a). 102             b). 311\n");
+    printf("c). 444             d). 519\n");
+    printf("q). quit.\n");
+    while ((ch = getchar()) < 'a' || ch > 'd' && ch != 'q')
+    {
+        while (getchar() != '\n')
+            continue;
+        printf("Please input the right letter (a, b, c, d or q).\n");
+    }
+    while (getchar() != '\n')
+        continue;
+    if (ch == 'a')
+        strcpy(flight_num, "102");
+    else if (ch == 'b')
+        strcpy(flight_num, "311");
+    else if (ch == 'c')
+        strcpy(flight_num, "444");
+    else if (ch == 'd')
+        strcpy(flight_num, "519");
 
-	return ch;
+    return ch;
 }
 
 char get_choice(void)
 {
-	char ch;
-	
-	printf("The number of the flight is %s. To choose a function, " 
-		"enter its letter label:\n", flight_num);
-	printf("a) Show number of empty seats\n");
-	printf("b) Show list of empty seats\n");
-	printf("c) Show alphabetical list of seats\n");
-	printf("d) Assign a customer to a seat assignment\n");
-	printf("e) Delete a seat assignment\n");
-	printf("f) Confirmed the seat assignment\n");
-	printf("g) Quit\n");
+    char ch;
+    
+    printf("The number of the flight is %s. To choose a function, "
+        "enter its letter label:\n", flight_num);
+    printf("a) Show number of empty seats\n");
+    printf("b) Show list of empty seats\n");
+    printf("c) Show alphabetical list of seats\n");
+    printf("d) Assign a customer to a seat assignment\n");
+    printf("e) Delete a seat assignment\n");
+    printf("f) Confirmed the seat assignment\n");
+    printf("g) Quit\n");
 
-	while ((ch = getchar()) < 'a' || ch > 'g')
-	{
-		while (getchar() != '\n')
-			continue;
-		printf("Please input the right letter.\n");
-	}
-	while (getchar() != '\n')
-			continue;
+    while ((ch = getchar()) < 'a' || ch > 'g')
+    {
+        while (getchar() != '\n')
+            continue;
+        printf("Please input the right letter.\n");
+    }
+    while (getchar() != '\n')
+            continue;
 
-	return ch;
+    return ch;
 }
 
 void show_number(struct seat * ps)
 {
-	int i;
-	int count = 0;
+    int i;
+    int count = 0;
 
-	for(i = 0; i < MAX; i++)
-	{
-		if (ps[i].isassign == 0)
-			count++;
-	}
-	printf("The number of empty seats is %d\n", count);
+    for(i = 0; i < MAX; i++)
+    {
+        if (ps[i].isassign == 0)
+            count++;
+    }
+    printf("The number of empty seats is %d\n", count);
 }
 
 void show_empty(struct seat * ps)
 {
-	int i;
+    int i;
 
-	printf("The list of empty seats in %s flight:\n", flight_num);
-	for (i = 0; i <	MAX; i++)
-	{
-		if (!ps[i].isassign)
-			printf("%d ", ps[i].num);
-	}
-	printf("\n");
+    printf("The list of empty seats in %s flight:\n", flight_num);
+    for (i = 0; i <	MAX; i++)
+    {
+        if (!ps[i].isassign)
+            printf("%d ", ps[i].num);
+    }
+    printf("\n");
 }
 
 void show_list(struct seat * ps)
 {
-	int i;
+    int i;
 
-	printf("The list of seats in %s flight:\n", flight_num);
-	for (i = 0; i <	MAX; i++)
-	{
-		printf("%d %s %s\n", ps[i].num, ps[i].fname, ps[i].lname);
-	}
-	printf("The seat assignment is not confirmed.\n");
+    printf("The list of seats in %s flight:\n", flight_num);
+    for (i = 0; i <	MAX; i++)
+    {
+        printf("%d %s %s\n", ps[i].num, ps[i].fname, ps[i].lname);
+    }
+    printf("The seat assignment is not confirmed.\n");
 }
 
-void assign_seat(struct seat * ps)		
+void assign_seat(struct seat * ps)
 {
-	int number;
-	int ret_val;
+    int number;
+    int ret_val;
 
-	printf("Please input the number of seat you want to book (1 to 12) "
-		"in %s flight:\n", flight_num);
-	while ((ret_val = scanf("%d", &number)) != 1|| number < 1 || number > 12 || 
-		ps[number - 1].isassign == 1)
-	{
-		if (ret_val != 1 || number < 1 || number > 12)
-			printf("Sorry, please input a integer from 1 to 12.\n");
-		else
-			printf("Sorry, the seat is assigned, please reselect:\n");
-		while (getchar() != '\n')
-			continue;
-	}
-	while (getchar() != '\n')
-		continue;
-	printf("Now, input your firstname:\n");
-	s_gets(ps[number - 1].fname, LEN);
-	printf("Input your lastname:\n");
-	s_gets(ps[number - 1].lname, LEN);
-	ps[number - 1].isassign = 1;
-	printf("OK.\n");
+    printf("Please input the number of seat you want to book (1 to 12) "
+        "in %s flight:\n", flight_num);
+    while ((ret_val = scanf("%d", &number)) != 1|| number < 1 || number > 12 ||
+        ps[number - 1].isassign == 1)
+    {
+        if (ret_val != 1 || number < 1 || number > 12)
+            printf("Sorry, please input a integer from 1 to 12.\n");
+        else
+            printf("Sorry, the seat is assigned, please reselect:\n");
+        while (getchar() != '\n')
+            continue;
+    }
+    while (getchar() != '\n')
+        continue;
+    printf("Now, input your firstname:\n");
+    s_gets(ps[number - 1].fname, LEN);
+    printf("Input your lastname:\n");
+    s_gets(ps[number - 1].lname, LEN);
+    ps[number - 1].isassign = 1;
+    printf("OK.\n");
 }
 
 
 void delete_seat(struct seat * ps)
 {
-	int number;
+    int number;
 
-	printf("Please input the number of seat you want to delete (1 to 12) " 
-		"in %s flight:\n", flight_num);
-	while (scanf("%d", &number) != 1 || number < 1 || number > 12 || 
-		ps[number - 1].isassign == 0)
-	{
-		if (ps[number - 1].isassign == 1)
-			printf("Sorry, the seat is empty, please reselect:\n");
-		else
-			printf("Sorry, please input a integer from 1 to 12.\n");
-		while (getchar() != '\n')
-			continue;
-	}
-	getchar();
-	strcpy(ps[number - 1].fname, "");
-	strcpy(ps[number - 1].lname, "");
-	ps[number - 1].isassign = 0;
-	printf("OK.\n");
+    printf("Please input the number of seat you want to delete (1 to 12) "
+        "in %s flight:\n", flight_num);
+    while (scanf("%d", &number) != 1 || number < 1 || number > 12 ||
+        ps[number - 1].isassign == 0)
+    {
+        if (ps[number - 1].isassign == 1)
+            printf("Sorry, the seat is empty, please reselect:\n");
+        else
+            printf("Sorry, please input a integer from 1 to 12.\n");
+        while (getchar() != '\n')
+            continue;
+    }
+    getchar();
+    strcpy(ps[number - 1].fname, "");
+    strcpy(ps[number - 1].lname, "");
+    ps[number - 1].isassign = 0;
+    printf("OK.\n");
 }
 
 void is_confirmed(void)
 {
-	isconf = 1;
-	printf("The seat assignment is confirmed.\n");
+    isconf = 1;
+    printf("The seat assignment is confirmed.\n");
 }
 
 void write_file(struct seat * ps)
 {
-	FILE * fp;
+    FILE * fp;
 
-	fp = fopen("seat.txt", "w+b");
-	fwrite(ps, sizeof(struct seat), MAX, fp);
-	fclose(fp);
+    fp = fopen("seat.txt", "w+b");
+    fwrite(ps, sizeof(struct seat), MAX, fp);
+    fclose(fp);
 }
 
 char * s_gets(char * st, int n)
 {
-	char * ret_val;
-	char * find;
+    char * ret_val;
+    char * find;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');
-		if (find)
-			*find = '\0';
-		else
-			while (getchar() != '\n')
-				continue;
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return ret_val;
+    return ret_val;
 }

@@ -1,5 +1,5 @@
-//ÃüÁîĞĞ²ÎÊıargv[1]´ú±íÄ¿±êÎÄ¼şÃû£¬ºóÃæ¼¸¸öÎªÔ´ÎÄ¼şÃû
-//¸Ã³ÌĞò°Ñ¶à¸öÔ´ÎÄ¼ş¼Óµ½Ô´ÎÄ¼şÄ©Î²
+//å‘½ä»¤è¡Œå‚æ•°argv[1]ä»£è¡¨ç›®æ ‡æ–‡ä»¶åï¼Œåé¢å‡ ä¸ªä¸ºæºæ–‡ä»¶å
+//è¯¥ç¨‹åºæŠŠå¤šä¸ªæºæ–‡ä»¶åŠ åˆ°æºæ–‡ä»¶æœ«å°¾
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,88 +10,88 @@ char * s_gets(char * st, int n);
 
 int main(int argc, char * argv[])
 {
-	FILE * fs, * fa;		//fsÖ¸ÏòÔ´ÎÄ¼ş,faÖ¸ÏòÄ¿±êÎÄ¼ş
-	int i;
-	int files = 0;
-	char ch;
+    FILE * fs, * fa;		//fsæŒ‡å‘æºæ–‡ä»¶,faæŒ‡å‘ç›®æ ‡æ–‡ä»¶
+    int i;
+    int files = 0;
+    char ch;
 
-	if (argc < 3)
-	{
-		fprintf(stderr, "Usage: %s filename\n", argv[0]);
-		exit(EXIT_FAILURE);
-	}
-	if ((fa = fopen(argv[1], "a+")) == NULL)
-	{
-		fprintf(stderr, "Could not open %s.\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0)
-	{
-		fputs("Can't creat output buffer\n", stderr);
-		exit(EXIT_FAILURE);
-	}
-	for (i = 2; i < argc; i++)
-	{
-		if (strcmp(argv[1], argv[i]) == 0)
-		{
-			fputs("Can't append file to itself\n", stderr);
-		}
-		else if ((fs = fopen(argv[i], "r")) == NULL)
-		{
-			fprintf(stderr, "Could not open %s.\n", argv[i]);
-		}
-		else
-		{
-			if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
-			{
-				fputs("Can't creat input buffer\n", stderr);
-				continue;
-			}
-			append(fs, fa);
-			if (ferror(fs) != 0)
-				fprintf(stderr, "Error in reading file %s.\n", argv[i]);
-			if (ferror(fa) != 0)
-				fprintf(stderr, "Error in writing file %s.\n", argv[1]);
-			fclose(fs);
-			printf("File %s appended.\n", argv[i]);
-		}
-	}
-	printf("%s contents:\n", argv[1]);
-	rewind(fa);
-	while ((ch = getc(fa)) != EOF)
-		putchar(ch);
-	puts("Done displaying.");
-	fclose(fa);
+    if (argc < 3)
+    {
+        fprintf(stderr, "Usage: %s filename\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+    if ((fa = fopen(argv[1], "a+")) == NULL)
+    {
+        fprintf(stderr, "Could not open %s.\n", argv[1]);
+        exit(EXIT_FAILURE);
+    }
+    if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0)
+    {
+        fputs("Can't creat output buffer\n", stderr);
+        exit(EXIT_FAILURE);
+    }
+    for (i = 2; i < argc; i++)
+    {
+        if (strcmp(argv[1], argv[i]) == 0)
+        {
+            fputs("Can't append file to itself\n", stderr);
+        }
+        else if ((fs = fopen(argv[i], "r")) == NULL)
+        {
+            fprintf(stderr, "Could not open %s.\n", argv[i]);
+        }
+        else
+        {
+            if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
+            {
+                fputs("Can't creat input buffer\n", stderr);
+                continue;
+            }
+            append(fs, fa);
+            if (ferror(fs) != 0)
+                fprintf(stderr, "Error in reading file %s.\n", argv[i]);
+            if (ferror(fa) != 0)
+                fprintf(stderr, "Error in writing file %s.\n", argv[1]);
+            fclose(fs);
+            printf("File %s appended.\n", argv[i]);
+        }
+    }
+    printf("%s contents:\n", argv[1]);
+    rewind(fa);
+    while ((ch = getc(fa)) != EOF)
+        putchar(ch);
+    puts("Done displaying.");
+    fclose(fa);
 
-	return 0;
+    return 0;
 }
 
-//¸½¼ÓÎÄ¼şµÄº¯Êı
+//é™„åŠ æ–‡ä»¶çš„å‡½æ•°
 void append(FILE * source, FILE * dest)
 {
-	size_t bytes;
-	static char temp[BUFSIZE];
+    size_t bytes;
+    static char temp[BUFSIZE];
 
-	while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
-		fwrite(temp, sizeof(char), bytes, dest);
+    while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
+        fwrite(temp, sizeof(char), bytes, dest);
 }
 
-//×Ô¶¨Òå¶ÁÈ¡ÎÄ¼şÃûµÄº¯Êı
+//è‡ªå®šä¹‰è¯»å–æ–‡ä»¶åçš„å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	char * find;
-	char * ret_val;
+    char * find;
+    char * ret_val;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');	 		//²éÕÒ»»ĞĞ·û
-		if (find)
-			*find = '\0';					//Ìæ»»Îª¿Õ×Ö·û
-		else
-			while (getchar() != '\n')
-				continue;					//´¦Àí¶àÓàÊäÈë
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');	 		//æŸ¥æ‰¾æ¢è¡Œç¬¦
+        if (find)
+            *find = '\0';					//æ›¿æ¢ä¸ºç©ºå­—ç¬¦
+        else
+            while (getchar() != '\n')
+                continue;					//å¤„ç†å¤šä½™è¾“å…¥
+    }
 
-	return ret_val;
+    return ret_val;
 }

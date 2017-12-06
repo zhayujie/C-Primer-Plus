@@ -1,68 +1,68 @@
 #include <stdio.h>
-#define BASE1 8.75		
+#define BASE1 8.75
 #define BASE2 9.33
 #define BASE3 10.00
 #define BASE4 11.20
-//ËÄÖÖµÈ¼¶µÄ»ù±¾¹¤×Ê
-#define TIME 40			//³¬¹ı40hÎª¼Ó°à
-#define	MUL	1.5			//¼Ó°àÊ±¼äËã×÷Æ½Ê±µÄ1.5±¶
-#define	RATE1 0.15		//Ç°300ÃÀÔªµÄË°ÂÊ
-#define RATE2 0.2		//300-450ÃÀÔªµÄË°ÂÊ
-#define RATE3 0.25		//´óÓÚ450ÃÀÔªµÄË°ÂÊ
-#define BREAK1 300		//Ë°ÂÊµÄµÚÒ»¸ö·Ö½çµã
-#define BREAK2 450		//Ë°ÂÊµÄµÚ¶ş¸ö·Ö½çµã
+//å››ç§ç­‰çº§çš„åŸºæœ¬å·¥èµ„
+#define TIME 40			//è¶…è¿‡40hä¸ºåŠ ç­
+#define	MUL	1.5			//åŠ ç­æ—¶é—´ç®—ä½œå¹³æ—¶çš„1.5å€
+#define	RATE1 0.15		//å‰300ç¾å…ƒçš„ç¨ç‡
+#define RATE2 0.2		//300-450ç¾å…ƒçš„ç¨ç‡
+#define RATE3 0.25		//å¤§äº450ç¾å…ƒçš„ç¨ç‡
+#define BREAK1 300		//ç¨ç‡çš„ç¬¬ä¸€ä¸ªåˆ†ç•Œç‚¹
+#define BREAK2 450		//ç¨ç‡çš„ç¬¬äºŒä¸ªåˆ†ç•Œç‚¹
 int main(void)
 {
-	double base, hour, tax, gross;
-	int count, num;
-	const int LENGTH = 65;	//*µÄ³¤¶È
-	
-	printpart: for (count = 0; count < LENGTH; count++)
-					printf("*");
-	printf("\nEnter the number corresponding to the desired pay rate or action:\n");
-	printf("%-36s%s","1) $8.75/hr", "2) $9.33/hr\n");
-	printf("%-36s%s","3) $10.00/hr", "4) $11.20/hr\n");
-	printf("%s\n", "5) quit");
-	for (count = 0; count < LENGTH; count++)
-		printf("*");
-	printf("\n");			
-	//´òÓ¡±í¸ñ
-	while (scanf("%d", &num) == 1) {
-	switch (num)
-	{
-		case 1:	base = BASE1;
-				break;
-		case 2: base = BASE2;
-				break;
-		case 3: base = BASE3;
-				break;
-		case 4: base = BASE4;
-				break;
-		case 5: printf("quit.\n");
-				return 0;
-		default: printf("Please input the right option.\n");
-				goto printpart;
-	}	//Ñ¡Ôñ»ù±¾¹¤×ÊµÈ¼¶
+    double base, hour, tax, gross;
+    int count, num;
+    const int LENGTH = 65;	//*çš„é•¿åº¦
+    
+    printpart: for (count = 0; count < LENGTH; count++)
+                    printf("*");
+    printf("\nEnter the number corresponding to the desired pay rate or action:\n");
+    printf("%-36s%s","1) $8.75/hr", "2) $9.33/hr\n");
+    printf("%-36s%s","3) $10.00/hr", "4) $11.20/hr\n");
+    printf("%s\n", "5) quit");
+    for (count = 0; count < LENGTH; count++)
+        printf("*");
+    printf("\n");
+    //æ‰“å°è¡¨æ ¼
+    while (scanf("%d", &num) == 1) {
+    switch (num)
+    {
+        case 1:	base = BASE1;
+                break;
+        case 2: base = BASE2;
+                break;
+        case 3: base = BASE3;
+                break;
+        case 4: base = BASE4;
+                break;
+        case 5: printf("quit.\n");
+                return 0;
+        default: printf("Please input the right option.\n");
+                goto printpart;
+    }	//é€‰æ‹©åŸºæœ¬å·¥èµ„ç­‰çº§
 
-	printf("Input your work hours in a week: ");
-	scanf("%lf", &hour);
-	if (hour <= TIME)
-		gross = hour * base;
-	else
-		gross = TIME * base + (hour - TIME) * MUL * base;
-	//¼ÆËã×ÜÊÕÈë
-	if (gross <= BREAK1)
-		tax = gross * RATE1;
-	else if (gross <= BREAK2)
-		tax = BREAK1 * RATE1 + (gross - BREAK1) * RATE2;
-	else
-		tax = BREAK1 * RATE1 + (BREAK2 - BREAK1) * RATE2 
-			+ (gross - BREAK2) * RATE3;
-	//¼ÆËãË°½ğ
-	printf("Your gross income is $%.2lf\nYour tax is $%.2lf\n" 
-			"Your net income is $%.2lf\n",
-			gross, tax, (gross - tax));
-	printf("\nYour next choice:\n");
-	}
-	return 0;
+    printf("Input your work hours in a week: ");
+    scanf("%lf", &hour);
+    if (hour <= TIME)
+        gross = hour * base;
+    else
+        gross = TIME * base + (hour - TIME) * MUL * base;
+    //è®¡ç®—æ€»æ”¶å…¥
+    if (gross <= BREAK1)
+        tax = gross * RATE1;
+    else if (gross <= BREAK2)
+        tax = BREAK1 * RATE1 + (gross - BREAK1) * RATE2;
+    else
+        tax = BREAK1 * RATE1 + (BREAK2 - BREAK1) * RATE2
+            + (gross - BREAK2) * RATE3;
+    //è®¡ç®—ç¨é‡‘
+    printf("Your gross income is $%.2lf\nYour tax is $%.2lf\n"
+            "Your net income is $%.2lf\n",
+            gross, tax, (gross - tax));
+    printf("\nYour next choice:\n");
+    }
+    return 0;
 }

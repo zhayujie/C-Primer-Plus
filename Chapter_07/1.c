@@ -1,23 +1,23 @@
 #include <stdio.h>
 int main(void)
 {
-	char ch;
-	int n_space = 0;		//¿Õ¸ñÊı
-	int n_newline = 0;		//»»ĞĞÊı
-	int n_others = 0;		//ÆäËû×Ö·ûÊı
-	
-	printf("Enter some text; Enter # to quit.\n");
-	while ((ch = getchar()) != '#')
-	{
-		if (ch == ' ')
-			n_space++;
-		else if (ch == '\n')
-			n_newline++;
-		else 
-			n_others++;
-	}
-	printf("Spaces: %d, newlines: %d, others: %d\n", 
-			n_space, n_newline, n_others);
+    char ch;
+    int n_space = 0;		//ç©ºæ ¼æ•°
+    int n_newline = 0;		//æ¢è¡Œæ•°
+    int n_others = 0;		//å…¶ä»–å­—ç¬¦æ•°
+    
+    printf("Enter some text; Enter # to quit.\n");
+    while ((ch = getchar()) != '#')
+    {
+        if (ch == ' ')
+            n_space++;
+        else if (ch == '\n')
+            n_newline++;
+        else
+            n_others++;
+    }
+    printf("Spaces: %d, newlines: %d, others: %d\n",
+            n_space, n_newline, n_others);
 
-	return 0;
+    return 0;
 }

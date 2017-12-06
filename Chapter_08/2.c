@@ -1,35 +1,35 @@
 #include <stdio.h>
 #define SPACE 32
-#define CTRL 64			
-#define COL 10				//Ã¿ĞĞ´òÓ¡10¶Ô
+#define CTRL 64
+#define COL 10				//æ¯è¡Œæ‰“å°10å¯¹
 int main(void)
 {
-	char ch;
-	int count = 0;
+    char ch;
+    int count = 0;
 
-	while ((ch = getchar()) != EOF)
-	{
-		count++;
-	//´òÓ¡×Ö·ûÊä³ö
-		if (ch >= SPACE)
-			printf("%c ", ch);
-	//»»ĞĞ·ûºÍÖÆ±í·ûµÄÊä³ö
-		else if (ch == '\n' || ch == '\t')
-			printf("%s", ch == '\n' ? "\\n" : "\\t");
-	//Ò»°ã¿ØÖÆ×Ö·ûµÄÊä³ö	
-		else
-			printf("^%c", ch + CTRL);
-		printf("%-5d", ch);
-		if (ch == '\n')
-			count = 0;
-		if (count % COL == 0)	//10¶Ô»»ĞĞ
-			printf("\n");	
-	}
+    while ((ch = getchar()) != EOF)
+    {
+        count++;
+    //æ‰“å°å­—ç¬¦è¾“å‡º
+        if (ch >= SPACE)
+            printf("%c ", ch);
+    //æ¢è¡Œç¬¦å’Œåˆ¶è¡¨ç¬¦çš„è¾“å‡º
+        else if (ch == '\n' || ch == '\t')
+            printf("%s", ch == '\n' ? "\\n" : "\\t");
+    //ä¸€èˆ¬æ§åˆ¶å­—ç¬¦çš„è¾“å‡º
+        else
+            printf("^%c", ch + CTRL);
+        printf("%-5d", ch);
+        if (ch == '\n')
+            count = 0;
+        if (count % COL == 0)	//10å¯¹æ¢è¡Œ
+            printf("\n");
+    }
 
-	return 0;
+    return 0;
 }
 
-	
+    
 
 
 

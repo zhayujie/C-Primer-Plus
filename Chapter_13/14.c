@@ -6,93 +6,93 @@
 #define COL 30
 int main(void)
 {
-	FILE * fs, * fd;				//fsÖ¸ÏòÔ´ÎÄ¼ş,fdÖ¸ÏòÄ¿±êÎÄ¼ş
-	char name[LEN];
-	char dig[ROW][COL];
-	char res[ROW][COL + 1];
-	char ch[] = {" .':~*= %#"};		//Êı×Ö×Ö·û¶ÔÓ¦µÄ·ûºÅ
-	int i, j;
+    FILE * fs, * fd;				//fsæŒ‡å‘æºæ–‡ä»¶,fdæŒ‡å‘ç›®æ ‡æ–‡ä»¶
+    char name[LEN];
+    char dig[ROW][COL];
+    char res[ROW][COL + 1];
+    char ch[] = {" .':~*= %#"};		//æ•°å­—å­—ç¬¦å¯¹åº”çš„ç¬¦å·
+    int i, j;
 
-	printf("Please enter the source file name:\n");
-	gets(name);
-	//´ò¿ªÔ´ÎÄ¼ş
-	if ((fs = fopen(name, "r")) == NULL)
-	{
-		fprintf(stderr, "Could not open %s.", name);
-		exit(EXIT_FAILURE);
-	}
-	//½«ÎÄ¼şÄÚÈİ¶ÁÈë 20 * 30 µÄintÊı×éÖĞ
-	//²¢ÇÒ×ª»¯³ÉÏàÓ¦·ûºÅ·ÅÈë 20 * 31 µÄ×Ö·ûÊı×éÖĞ
-	for (i = 0; i < ROW; i++)
-	{
-		for (j = 0; j < COL; j++)
-		{
-			fscanf(fs, "%d", &dig[i][j]);
-		}
-	}
-	for (i = 0; i < ROW; i++)
-	{
-		for (j = 0; j < COL; j++)
-		{
-			if ((i == 0 && j == 0) || (i == 0 && j == 29)
-				||(i == 19 && j == 0) || (i == 19 && j == 29))
-				;
-			else if (i == 0) {
-				if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
-					(abs(dig[i][j] - dig[i + 1][j]) > 1))
-					dig[i][j] = (dig[i][j - 1] + dig[i][j + 1] + dig[i + 1][j]) / 3.0 + 0.5;
-			}	
-			else if (j == 0) {
-				if ((abs(dig[i][j] - dig[i - 1][j]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
-					(abs(dig[i][j] - dig[i + 1][j]) > 1))
-					dig[i][j] = (dig[i - 1][j] + dig[i][j + 1] + dig[i + 1][j]) / 3.0 + 0.5;
-			}
+    printf("Please enter the source file name:\n");
+    gets(name);
+    //æ‰“å¼€æºæ–‡ä»¶
+    if ((fs = fopen(name, "r")) == NULL)
+    {
+        fprintf(stderr, "Could not open %s.", name);
+        exit(EXIT_FAILURE);
+    }
+    //å°†æ–‡ä»¶å†…å®¹è¯»å…¥ 20 * 30 çš„intæ•°ç»„ä¸­
+    //å¹¶ä¸”è½¬åŒ–æˆç›¸åº”ç¬¦å·æ”¾å…¥ 20 * 31 çš„å­—ç¬¦æ•°ç»„ä¸­
+    for (i = 0; i < ROW; i++)
+    {
+        for (j = 0; j < COL; j++)
+        {
+            fscanf(fs, "%d", &dig[i][j]);
+        }
+    }
+    for (i = 0; i < ROW; i++)
+    {
+        for (j = 0; j < COL; j++)
+        {
+            if ((i == 0 && j == 0) || (i == 0 && j == 29)
+                ||(i == 19 && j == 0) || (i == 19 && j == 29))
+                ;
+            else if (i == 0) {
+                if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
+                    (abs(dig[i][j] - dig[i + 1][j]) > 1))
+                    dig[i][j] = (dig[i][j - 1] + dig[i][j + 1] + dig[i + 1][j]) / 3.0 + 0.5;
+            }
+            else if (j == 0) {
+                if ((abs(dig[i][j] - dig[i - 1][j]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
+                    (abs(dig[i][j] - dig[i + 1][j]) > 1))
+                    dig[i][j] = (dig[i - 1][j] + dig[i][j + 1] + dig[i + 1][j]) / 3.0 + 0.5;
+            }
 
-			else if (i == 19) {
-				if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && abs((dig[i][j] - dig[i][j + 1]) > 1) &&
-					(abs(dig[i][j] - dig[i - 1][j]) > 1))
-					dig[i][j] = (dig[i - 1][j] + dig[i][j - 1] + dig[i][j + 1]) / 3.0 + 0.5;
-			}
+            else if (i == 19) {
+                if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && abs((dig[i][j] - dig[i][j + 1]) > 1) &&
+                    (abs(dig[i][j] - dig[i - 1][j]) > 1))
+                    dig[i][j] = (dig[i - 1][j] + dig[i][j - 1] + dig[i][j + 1]) / 3.0 + 0.5;
+            }
 
-			else if (j == 29) {
-				if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i + 1][j]) > 1) &&
-					(abs(dig[i][j] - dig[i - 1][j]) > 1))
-					dig[i][j] = (dig[i - 1][j] + dig[i][j - 1] + dig[i + 1][j]) / 3.0 + 0.5;
-			}
-			
-			else {
-				if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
-					(abs(dig[i][j] - dig[i - 1][j]) > 1) && (abs(dig[i][j] - dig[i + 1][j]) > 1))
-					dig[i][j] = (dig[i - 1][j] + dig[i + 1][j] + dig[i][j - 1] + dig[i][j + 1]) / 4.0 + 0.5;
-			}
-		}
-	}
+            else if (j == 29) {
+                if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i + 1][j]) > 1) &&
+                    (abs(dig[i][j] - dig[i - 1][j]) > 1))
+                    dig[i][j] = (dig[i - 1][j] + dig[i][j - 1] + dig[i + 1][j]) / 3.0 + 0.5;
+            }
+            
+            else {
+                if ((abs(dig[i][j] - dig[i][j - 1]) > 1) && (abs(dig[i][j] - dig[i][j + 1]) > 1) &&
+                    (abs(dig[i][j] - dig[i - 1][j]) > 1) && (abs(dig[i][j] - dig[i + 1][j]) > 1))
+                    dig[i][j] = (dig[i - 1][j] + dig[i + 1][j] + dig[i][j - 1] + dig[i][j + 1]) / 4.0 + 0.5;
+            }
+        }
+    }
 
-	for (i = 0; i < ROW; i++)
-	{
-		for (j = 0; j < COL; j++)
-		{
-			res[i][j] = ch[dig[i][j]]; 
-		}
-		res[i][j] = '\0';
-	}
-	printf("Enter the destination file name:\n");
-	gets(name);
-	//´ò¿ªÄ¿±êÎÄ¼ş
-	if ((fd = fopen(name, "w")) == NULL)
-	{
-		fprintf(stderr, "Could not open %s.\n", name);
-		exit(EXIT_FAILURE);
-	}
-	//½«½á¹û´òÓ¡³öÀ´²¢Ğ´ÈëÄ¿±êÎÄ¼ş
-	for (i = 0; i < ROW; i++)
-	{
-		fprintf(stdout, "%s\n", res[i]);
-		fprintf(fd, "%s\n", res[i]);
-	}
-	//¹Ø±ÕÎÄ¼ş
-	if (fclose(fs) != 0 || fclose(fd) != 0)
-		fprintf(stderr, "Error for closing file.\n");
+    for (i = 0; i < ROW; i++)
+    {
+        for (j = 0; j < COL; j++)
+        {
+            res[i][j] = ch[dig[i][j]];
+        }
+        res[i][j] = '\0';
+    }
+    printf("Enter the destination file name:\n");
+    gets(name);
+    //æ‰“å¼€ç›®æ ‡æ–‡ä»¶
+    if ((fd = fopen(name, "w")) == NULL)
+    {
+        fprintf(stderr, "Could not open %s.\n", name);
+        exit(EXIT_FAILURE);
+    }
+    //å°†ç»“æœæ‰“å°å‡ºæ¥å¹¶å†™å…¥ç›®æ ‡æ–‡ä»¶
+    for (i = 0; i < ROW; i++)
+    {
+        fprintf(stdout, "%s\n", res[i]);
+        fprintf(fd, "%s\n", res[i]);
+    }
+    //å…³é—­æ–‡ä»¶
+    if (fclose(fs) != 0 || fclose(fd) != 0)
+        fprintf(stderr, "Error for closing file.\n");
 
-	return 0;
+    return 0;
 }

@@ -3,23 +3,23 @@ void br(void);
 void ic(void);
 int main(void)
 {
-	br();
-	printf(",");
+    br();
+    printf(",");
     ic();
-	printf("\n");
-	ic();
-	printf("\n");
-	br();
-	printf("\n");
-	
-	return 0;
+    printf("\n");
+    ic();
+    printf("\n");
+    br();
+    printf("\n");
+    
+    return 0;
 }
 
 void br(void)
 {
-	printf("Brazil,Russia");
+    printf("Brazil,Russia");
 }
 void ic(void)
 {
-	printf("India,China");
+    printf("India,China");
 }

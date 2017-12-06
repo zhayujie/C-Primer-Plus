@@ -2,51 +2,51 @@
 #include <string.h>
 #define QUIT "quit"
 #define SIZE 80
-//ËÑË÷×Ö·ûÔÚ×Ö·û´®ÖĞÊ×´Î³öÏÖµÄÎ»ÖÃ
-char * str_ch(char * str, char c);		
+//æœç´¢å­—ç¬¦åœ¨å­—ç¬¦ä¸²ä¸­é¦–æ¬¡å‡ºç°çš„ä½ç½®
+char * str_ch(char * str, char c);
 int main(void)
 {
-	char str[SIZE];
-	char ch;
-	char * ret_val;
+    char str[SIZE];
+    char ch;
+    char * ret_val;
 
-	printf("Input a string (type quit to quit):\n");
-	gets(str);
-	while (strcmp(str, QUIT))
-	{
-		printf("Input a character: ");
-		scanf("%c", &ch);
-		while (getchar() != '\n')		//Ìø¹ıÊ£ÓàÊäÈë²¿·Ö
-			continue;
-		ret_val = str_ch(str, ch);
-		if (ret_val != NULL)
-			printf("Find! The string start with the %c:\n"
-			"%s\n", ch, ret_val);
-		else
-			printf("Can't find!\n");
-		printf("Input a string (type quit to quit):\n");
-		gets(str);
-	}
-	printf("Bye.\n");
-		
-	return 0;
+    printf("Input a string (type quit to quit):\n");
+    gets(str);
+    while (strcmp(str, QUIT))
+    {
+        printf("Input a character: ");
+        scanf("%c", &ch);
+        while (getchar() != '\n')		//è·³è¿‡å‰©ä½™è¾“å…¥éƒ¨åˆ†
+            continue;
+        ret_val = str_ch(str, ch);
+        if (ret_val != NULL)
+            printf("Find! The string start with the %c:\n"
+            "%s\n", ch, ret_val);
+        else
+            printf("Can't find!\n");
+        printf("Input a string (type quit to quit):\n");
+        gets(str);
+    }
+    printf("Bye.\n");
+        
+    return 0;
 }
 
 
 
 char * str_ch(char * str, char c)
 {
-	int flag = 0;
-	int count = 0;
-	
-	while (count++ < strlen(str))
-		if (*str++ == c)
-		{
-			flag = 1;
-			break;
-		}
-	if (flag)
-		return str - 1;
-	else
-		return NULL;
+    int flag = 0;
+    int count = 0;
+    
+    while (count++ < strlen(str))
+        if (*str++ == c)
+        {
+            flag = 1;
+            break;
+        }
+    if (flag)
+        return str - 1;
+    else
+        return NULL;
 }

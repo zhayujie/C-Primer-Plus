@@ -3,24 +3,24 @@
 char get_first(void);
 int main(void)
 {
-	char ch;
-	while ((ch = get_first()) != EOF)
-	{
-		putchar(ch);
-		printf("\n");
-	}
-	return 0;
+    char ch;
+    while ((ch = get_first()) != EOF)
+    {
+        putchar(ch);
+        printf("\n");
+    }
+    return 0;
 }
 
 char get_first(void)
 {
-	char ch;
-	while (isspace(ch = getchar()))
-		continue;
-	while (getchar() != '\n')
-		continue;
+    char ch;
+    while (isspace(ch = getchar()))
+        continue;
+    while (getchar() != '\n')
+        continue;
 
-	return ch;
+    return ch;
 }
 
 

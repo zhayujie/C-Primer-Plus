@@ -6,62 +6,62 @@ char * s_gets(char * st, int n);
 
 int main(void)
 {
-	FILE * fs, * fa;		//fsÖ¸ÏòÔ´ÎÄ¼ş,faÖ¸ÏòÄ¿±êÎÄ¼ş
-	char ch;
-	char name_source[SIZE];
-	char name_dest[SIZE];
-	int count = 0;
+    FILE * fs, * fa;		//fsæŒ‡å‘æºæ–‡ä»¶,faæŒ‡å‘ç›®æ ‡æ–‡ä»¶
+    char ch;
+    char name_source[SIZE];
+    char name_dest[SIZE];
+    int count = 0;
 
-	//ÊäÈëÔ´ÎÄ¼şºÍÄ¿±êÎÄ¼şÃû
-	fprintf(stdout, "Please enter the source file name:\n");
-	s_gets(name_source, SIZE);
-	fprintf(stdout, "Please enter the destination file name:\n");
-	s_gets(name_dest, SIZE);
-	
-	//´ò¿ªÔ´ÎÄ¼şºÍÄ¿±êÎÄ¼ş
-	if ((fs = fopen(name_source, "r")) == NULL)
-	{
-		fprintf(stderr, "Could not open the %s\n", name_source);
-		exit(EXIT_FAILURE);
-	}
-	if ((fa = fopen(name_dest, "w")) == NULL)
-	{
-		fprintf(stderr, "Could not open the %s\n", name_dest);
-		exit(EXIT_FAILURE);
-	}
+    //è¾“å…¥æºæ–‡ä»¶å’Œç›®æ ‡æ–‡ä»¶å
+    fprintf(stdout, "Please enter the source file name:\n");
+    s_gets(name_source, SIZE);
+    fprintf(stdout, "Please enter the destination file name:\n");
+    s_gets(name_dest, SIZE);
+    
+    //æ‰“å¼€æºæ–‡ä»¶å’Œç›®æ ‡æ–‡ä»¶
+    if ((fs = fopen(name_source, "r")) == NULL)
+    {
+        fprintf(stderr, "Could not open the %s\n", name_source);
+        exit(EXIT_FAILURE);
+    }
+    if ((fa = fopen(name_dest, "w")) == NULL)
+    {
+        fprintf(stderr, "Could not open the %s\n", name_dest);
+        exit(EXIT_FAILURE);
+    }
 
-	//½«Ô´ÎÄ¼şÃ¿3¸ö×Ö·ûµÄµÚ1¸ö×Ö·ûÊä³öµ½Ä¿±êÎÄ¼ş
-	while ((ch = getc(fs)) != EOF)
-	{
-		if (count++ %3 == 0)
-			putc(ch, fa);		
-	}
+    //å°†æºæ–‡ä»¶æ¯3ä¸ªå­—ç¬¦çš„ç¬¬1ä¸ªå­—ç¬¦è¾“å‡ºåˆ°ç›®æ ‡æ–‡ä»¶
+    while ((ch = getc(fs)) != EOF)
+    {
+        if (count++ %3 == 0)
+            putc(ch, fa);
+    }
 
-	//ÊÕÎ²¹¤×÷
-	if (fclose(fs) != 0 || fclose(fa) != 0)
-		fprintf(stderr, "Error in closing files\n");
+    //æ”¶å°¾å·¥ä½œ
+    if (fclose(fs) != 0 || fclose(fa) != 0)
+        fprintf(stderr, "Error in closing files\n");
 
-	return 0;
+    return 0;
 }
 
 
-//×Ô¶¨Òå¶ÁÈ¡ÎÄ¼şÃûµÄº¯Êı
+//è‡ªå®šä¹‰è¯»å–æ–‡ä»¶åçš„å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	char * find;
-	char * ret_val;
+    char * find;
+    char * ret_val;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');	 		//²éÕÒ»»ĞĞ·û
-		if (find)
-			*find = '\0';			//Ìæ»»Îª¿Õ×Ö·û
-		else
-			while (getchar() != '\n')
-				continue;		//´¦Àí¶àÓàÊäÈë
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');	 		//æŸ¥æ‰¾æ¢è¡Œç¬¦
+        if (find)
+            *find = '\0';			//æ›¿æ¢ä¸ºç©ºå­—ç¬¦
+        else
+            while (getchar() != '\n')
+                continue;		//å¤„ç†å¤šä½™è¾“å…¥
+    }
 
-	return ret_val;
+    return ret_val;
 }
 

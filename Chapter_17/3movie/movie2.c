@@ -3,79 +3,79 @@
 #include <string.h>
 #include "movie2.h"
 
-//³õÊ¼»¯Á´±íÎª¿Õ
+//åˆå§‹åŒ–é“¾è¡¨ä¸ºç©º
 void InitializeList(List * plist)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < MAXSIZE; i++)
-	{
-		strcpy((plist->entries[i]).titile, "");
-		(plist->entries[i]).rating = 0;
-		plist->items = 0;
-	}
+    for (i = 0; i < MAXSIZE; i++)
+    {
+        strcpy((plist->entries[i]).titile, "");
+        (plist->entries[i]).rating = 0;
+        plist->items = 0;
+    }
 }
 
-//Á´±íÎª¿Õ,·µ»Ø1
+//é“¾è¡¨ä¸ºç©º,è¿”å›1
 int ListIsEmpty(const List * plist)
 {
-	if (plist->items == 0)
-		return 1;
-	else
-		return 0;
+    if (plist->items == 0)
+        return 1;
+    else
+        return 0;
 }
 
-//Á´±íÎªÂú£¬·µ»Ø1
+//é“¾è¡¨ä¸ºæ»¡ï¼Œè¿”å›1
 int ListIsFull(const List * plist)
 {
-	if (plist->items == MAXSIZE)
-		return 1;
-	else
-		return 0;
+    if (plist->items == MAXSIZE)
+        return 1;
+    else
+        return 0;
 }
 
-//ÎªÁ´±íÌí¼ÓÏî£¬³É¹¦·µ»Ø1
+//ä¸ºé“¾è¡¨æ·»åŠ é¡¹ï¼ŒæˆåŠŸè¿”å›1
 int AddItem(List * plist, Item item)
 {
-	if (plist->items == MAXSIZE)
-	{
-		fprintf(stderr, "The list is full.\n");
-		return 0;
-	}
+    if (plist->items == MAXSIZE)
+    {
+        fprintf(stderr, "The list is full.\n");
+        return 0;
+    }
 
-	plist->entries[plist->items] = item;
-	(plist->items)++;
+    plist->entries[plist->items] = item;
+    (plist->items)++;
 
-	return 1;
+    return 1;
 }
 
-//È·¶¨Á´±íµÄÏîÊı
+//ç¡®å®šé“¾è¡¨çš„é¡¹æ•°
 unsigned int ListItemCount(List * plist)
 {
-	return plist->items;
-}	
-
-//±éÀúÁ´±í
-void Traverse(const List * plist, void (*pfun)(Item item))
-{
-	int i;
-	
-	for (i = 0; i < plist->items; i++)
-	{
-		(*pfun)(plist->entries[i]);
-	}
+    return plist->items;
 }
 
-//Çå¿ÕÁ´±í
+//éå†é“¾è¡¨
+void Traverse(const List * plist, void (*pfun)(Item item))
+{
+    int i;
+    
+    for (i = 0; i < plist->items; i++)
+    {
+        (*pfun)(plist->entries[i]);
+    }
+}
+
+//æ¸…ç©ºé“¾è¡¨
 void DeleteAll(List * plist)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < plist->items; i++)
-	{
-		strcpy((plist->entries[i]).titile, "");
-		(plist->entries[i]).rating = 0;
-		plist->items = 0;
-	}
-	
+    for (i = 0; i < plist->items; i++)
+    {
+        strcpy((plist->entries[i]).titile, "");
+        (plist->entries[i]).rating = 0;
+        plist->items = 0;
+    }
+    
 }

@@ -6,56 +6,56 @@ char * s_gets(char * st, int n);
 void reverse(char * st);
 int main(void)
 {
-	char str[SIZE];
-	while (strcmp(s_gets(str, SIZE), QUIT))		//ÊäÈëquit½áÊø
-	{	
-		reverse(str);
-		puts(str);
-	}
-	
-	return 0;
+    char str[SIZE];
+    while (strcmp(s_gets(str, SIZE), QUIT))		//è¾“å…¥quitç»“æŸ
+    {
+        reverse(str);
+        puts(str);
+    }
+    
+    return 0;
 }
 
 
-//×Ô¶¨ÒåµÄ×Ö·û´®ÊäÈëº¯Êı
+//è‡ªå®šä¹‰çš„å­—ç¬¦ä¸²è¾“å…¥å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	int i = 0;
-	
-	printf("Input the first string (type quit to quit):\n");
-	if (fgets(st, n, stdin))	//¼´·µ»ØÖµst²»µÈÓÚNULL
-	{
-		while (st[i] != '\n' && st[i] != '\0')
-			i++;
-		if (st[i] == '\n')
-			st[i] = '\0';
-		else 
-			while (getchar() != '\n')
-				continue;
-	}
+    int i = 0;
+    
+    printf("Input the first string (type quit to quit):\n");
+    if (fgets(st, n, stdin))	//å³è¿”å›å€¼stä¸ç­‰äºNULL
+    {
+        while (st[i] != '\n' && st[i] != '\0')
+            i++;
+        if (st[i] == '\n')
+            st[i] = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return st;
+    return st;
 }
 
-//Ê¹×Ö·û´®µ¹ĞòµÄº¯Êı
+//ä½¿å­—ç¬¦ä¸²å€’åºçš„å‡½æ•°
 void reverse(char * st)
 {
-	unsigned int i;
-	char temp;
+    unsigned int i;
+    char temp;
 
-	size_t length = strlen(st);
-	for (i = 0; i < length / 2; i++)
-	{
-		temp = st[length - i -1];
-		st[length - i - 1] = st[i];
-		st[i] = temp;
-	}
-	st[length] = '\0';
+    size_t length = strlen(st);
+    for (i = 0; i < length / 2; i++)
+    {
+        temp = st[length - i -1];
+        st[length - i - 1] = st[i];
+        st[i] = temp;
+    }
+    st[length] = '\0';
 }
 
 
 
 
 
-	
+    
 

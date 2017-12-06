@@ -9,70 +9,70 @@ char * s_gets(char * st, int n);
 
 int main(void)
 {
-	Stack stack;
-	Item temp[SIZE];
-	Item ch;
-	int i;
+    Stack stack;
+    Item temp[SIZE];
+    Item ch;
+    int i;
 
-	InitializeStack(&stack);
+    InitializeStack(&stack);
 
-	//½«ÓÃ»§ÊäÈëÊı¾İÑ¹ÈëÕ»ÖĞ
-	printf("Enter a string:\n");
-	while (s_gets(temp, SIZE) != NULL && temp[0] != '\0')
-	{
-		for (i = 0; temp[i] != '\0'; i++)
-		{
-			if (AddItem(&stack, temp[i]) == 0)
-			{
-				break;
-			}
-		}
-		
-		if (StackIsFull(&stack))
-		{
-			fprintf(stderr, "The stack is full.\n");
-			break;
-		}
-		printf("Your next string (empty line to stop):\n");
-	}
+    //å°†ç”¨æˆ·è¾“å…¥æ•°æ®å‹å…¥æ ˆä¸­
+    printf("Enter a string:\n");
+    while (s_gets(temp, SIZE) != NULL && temp[0] != '\0')
+    {
+        for (i = 0; temp[i] != '\0'; i++)
+        {
+            if (AddItem(&stack, temp[i]) == 0)
+            {
+                break;
+            }
+        }
+        
+        if (StackIsFull(&stack))
+        {
+            fprintf(stderr, "The stack is full.\n");
+            break;
+        }
+        printf("Your next string (empty line to stop):\n");
+    }
 
-	//´ÓÕ»ÖĞµ¯³öÊı¾İ²¢Êä³ö
-	if (StackIsEmpty(&stack))
-	{
-		fprintf(stderr, "There is no data.\n");
-		exit(1);
-	} 
-	
-	printf("You input %d charcters.\n", StackItemCount(&stack));
-	printf("The string in reverse order:\n");
-	while (StackIsEmpty(&stack) != 1)
-	{
-		DelItem(&stack, &ch);
-		putchar(ch);
-	}
-	printf("\nBye.\n");
+    //ä»æ ˆä¸­å¼¹å‡ºæ•°æ®å¹¶è¾“å‡º
+    if (StackIsEmpty(&stack))
+    {
+        fprintf(stderr, "There is no data.\n");
+        exit(1);
+    }
+    
+    printf("You input %d charcters.\n", StackItemCount(&stack));
+    printf("The string in reverse order:\n");
+    while (StackIsEmpty(&stack) != 1)
+    {
+        DelItem(&stack, &ch);
+        putchar(ch);
+    }
+    printf("\nBye.\n");
 
-	return 0;
+    return 0;
 }
 
 
 char * s_gets(char * st, int n)
 {
-	char * ret_val;
-	char * find;
+    char * ret_val;
+    char * find;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');
-		if (find)
-			*find = '\0';
-		else
-			while (getchar() != '\n')
-				continue;
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return ret_val;
+    return ret_val;
 }
 
 

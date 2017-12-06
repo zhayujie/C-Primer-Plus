@@ -1,10 +1,10 @@
 #include<stdio.h>
 int main(void)
 {
-	int toes=10;
-	int toes_2,toes2;
-	toes_2=2*toes;
-	toes2=toes*toes;
-	printf("toesÊÇ%d,toesµÄÁ½±¶ÊÇ%d,toesµÄÆ½·½ÊÇ%d\n",toes,toes_2,toes2);
+    int toes=10;
+    int toes_2,toes2;
+    toes_2=2*toes;
+    toes2=toes*toes;
+    printf("toesæ˜¯%d,toesçš„ä¸¤å€æ˜¯%d,toesçš„å¹³æ–¹æ˜¯%d\n",toes,toes_2,toes2);
     return 0;
 }

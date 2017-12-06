@@ -1,93 +1,93 @@
 #include <stdio.h>
 #define ROWS 3
 #define	COLS 5
-#define NUM 15		//¹²¼Æ15¸öÊı
-void get_num(double ar[][COLS], int rows);		//°ÑÓÃ»§ÊäÈëµÄÊı¾İ´¢´æÔÚÊı×éÖĞ
-double aver_row(double ar[]);					//¼ÆËãÃ¿×éÊı¾İµÄÆ½¾ùÖµ
-double aver_all(double ar[][COLS], int rows);	//¼ÆËãËùÓĞÊı¾İµÄÆ½¾ùÖµ
-double max_num(double ar[][COLS], int rows);		//ÕÒ³ö15¸öÊı¾İµÄ×î´óÖµ
-//´òÓ¡½á¹û
-void print_result(double ar[][COLS], int rows);	
+#define NUM 15		//å…±è®¡15ä¸ªæ•°
+void get_num(double ar[][COLS], int rows);		//æŠŠç”¨æˆ·è¾“å…¥çš„æ•°æ®å‚¨å­˜åœ¨æ•°ç»„ä¸­
+double aver_row(double ar[]);					//è®¡ç®—æ¯ç»„æ•°æ®çš„å¹³å‡å€¼
+double aver_all(double ar[][COLS], int rows);	//è®¡ç®—æ‰€æœ‰æ•°æ®çš„å¹³å‡å€¼
+double max_num(double ar[][COLS], int rows);		//æ‰¾å‡º15ä¸ªæ•°æ®çš„æœ€å¤§å€¼
+//æ‰“å°ç»“æœ
+void print_result(double ar[][COLS], int rows);
 
 int main(void)
 {
-	double array[ROWS][COLS];
+    double array[ROWS][COLS];
 
-	get_num(array, ROWS);
-	print_result(array, ROWS);
+    get_num(array, ROWS);
+    print_result(array, ROWS);
 
-	return 0;
+    return 0;
 }
 
 
 void get_num(double ar[][COLS], int rows)
 {
-	int r, c;
-	double a = 1.0;			//ÊÇÎªÁËÈÃvc6.0±àÒëÆ÷Á´½Ó¸¡µãÁ´½Ó¿â
+    int r, c;
+    double a = 1.0;			//æ˜¯ä¸ºäº†è®©vc6.0ç¼–è¯‘å™¨é“¾æ¥æµ®ç‚¹é“¾æ¥åº“
 
-	printf("Please enter 3 groups of numbers, and there\n" 
-		   "are 5 numbers in each group:\n");
+    printf("Please enter 3 groups of numbers, and there\n"
+           "are 5 numbers in each group:\n");
 
-	for (r = 0; r < rows; r++)
-		for (c = 0; c < COLS; c++)
-			scanf("%lf", &ar[r][c]);
+    for (r = 0; r < rows; r++)
+        for (c = 0; c < COLS; c++)
+            scanf("%lf", &ar[r][c]);
 }
 
 double aver_row(double ar[])
 {
-	int c;
-	double sub;
+    int c;
+    double sub;
 
-	for (c = 0, sub = 0.0; c < COLS; c++)
-		sub += ar[c];
+    for (c = 0, sub = 0.0; c < COLS; c++)
+        sub += ar[c];
 
-	return (sub / COLS);
+    return (sub / COLS);
 }
 
 double aver_all(double ar[][COLS], int rows)
 {
-	int r, c;
-	double total;
+    int r, c;
+    double total;
 
-	for (r = 0, total = 0.0; r < rows; r++)
-		for (c = 0; c < COLS; c++)
-			total += ar[r][c];
-	return (total / NUM);
+    for (r = 0, total = 0.0; r < rows; r++)
+        for (c = 0; c < COLS; c++)
+            total += ar[r][c];
+    return (total / NUM);
 }
 
 double max_num(double ar[][COLS], int rows)
 {
-	int r, c;
-	double max;
-	
-	for (r = 0, max = ar[0][0]; r < rows; r++)
-		for (c = 0; c < COLS; c++)
-			if (max < ar[r][c])
-				max = ar[r][c];
-	
-	return max;
+    int r, c;
+    double max;
+    
+    for (r = 0, max = ar[0][0]; r < rows; r++)
+        for (c = 0; c < COLS; c++)
+            if (max < ar[r][c])
+                max = ar[r][c];
+    
+    return max;
 }
 
 void print_result(double ar[][COLS], int rows)
 {
-	int r, c, row;
-	//´òÓ¡Êı×é
-	printf("The array:\n");
-	for (r = 0; r < rows; r++)
-	{
-		for (c = 0; c < COLS; c++) 
-			printf("%-5g", ar[r][c]);
-		printf("\n");
-	}
-	//Êä³öÃ¿×éÆ½¾ùÖµ
-	for (row = 0; row <ROWS; row++)
-		printf("The average value in row %d is: %g\n",
-				row, aver_row(ar[row]));
-	//Êä³öËùÓĞÊı¾İÆ½¾ùÖµ
-	printf("The average value in the array is: %g\n",
-			aver_all(ar, ROWS));
-	//Êä³ö15¸öÊı¾İµÄ×î´óÖµ
-	printf("The maximum number in the array is: %g\n",
-			max_num(ar, ROWS));
-	printf("Bye.\n");
+    int r, c, row;
+    //æ‰“å°æ•°ç»„
+    printf("The array:\n");
+    for (r = 0; r < rows; r++)
+    {
+        for (c = 0; c < COLS; c++)
+            printf("%-5g", ar[r][c]);
+        printf("\n");
+    }
+    //è¾“å‡ºæ¯ç»„å¹³å‡å€¼
+    for (row = 0; row <ROWS; row++)
+        printf("The average value in row %d is: %g\n",
+                row, aver_row(ar[row]));
+    //è¾“å‡ºæ‰€æœ‰æ•°æ®å¹³å‡å€¼
+    printf("The average value in the array is: %g\n",
+            aver_all(ar, ROWS));
+    //è¾“å‡º15ä¸ªæ•°æ®çš„æœ€å¤§å€¼
+    printf("The maximum number in the array is: %g\n",
+            max_num(ar, ROWS));
+    printf("Bye.\n");
 }

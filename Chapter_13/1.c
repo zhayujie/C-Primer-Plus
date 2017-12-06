@@ -5,45 +5,45 @@
 char * s_gets(char * st, int n);
 int main(void)
 {
-	char name[SIZE];
-	char ch;
-	unsigned long count = 0;
-	FILE * fp;
-	
-	printf("Enter the file name: ");
-	s_gets(name, SIZE);
-	if ((fp = fopen(name, "r")) == NULL)
-	{
-		printf("Can't open %s\n", name);
-		exit(EXIT_FAILURE);
-	}
-	while ((ch = getc(fp)) != EOF)
-	{
-		putc(ch, stdout);
-		count++;
-	}
-	fclose(fp);
-	printf("File %s has %lu characters\n", name, count);
+    char name[SIZE];
+    char ch;
+    unsigned long count = 0;
+    FILE * fp;
+    
+    printf("Enter the file name: ");
+    s_gets(name, SIZE);
+    if ((fp = fopen(name, "r")) == NULL)
+    {
+        printf("Can't open %s\n", name);
+        exit(EXIT_FAILURE);
+    }
+    while ((ch = getc(fp)) != EOF)
+    {
+        putc(ch, stdout);
+        count++;
+    }
+    fclose(fp);
+    printf("File %s has %lu characters\n", name, count);
 
-	return 0;
+    return 0;
 }
 
-//×Ô¶¨Òå¶ÁÈ¡ÎÄ¼şÃûµÄº¯Êı
+//è‡ªå®šä¹‰è¯»å–æ–‡ä»¶åçš„å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	char * find;
-	char * ret_val;
+    char * find;
+    char * ret_val;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');	//²éÕÒ»»ĞĞ·û
-		if (find)
-			*find = '\0';			//Ìæ»»Îª¿Õ×Ö·û
-		else
-			while (getchar() != '\n')
-				continue;
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');	//æŸ¥æ‰¾æ¢è¡Œç¬¦
+        if (find)
+            *find = '\0';			//æ›¿æ¢ä¸ºç©ºå­—ç¬¦
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return ret_val;
+    return ret_val;
 }

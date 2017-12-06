@@ -5,43 +5,43 @@
 char * mystrncpy(char * p1, char * p2, int n);
 int main(void)
 {
-	char s1[SIZE];
-	char s2[SIZE];
-	int num;
-	
-	printf("Input the first string (type quit to quit):\n");
-	while (strcmp(gets(s1), QUIT))		//ÊäÈëquit½áÊø
-	{
-		printf("Input the second string:\n");
-		gets(s2);
-		printf("Input the number of char copied from s2: ");
-		scanf("%d", &num);
-		getchar();						//Ìø¹ı»Ø³µ
-		//µ±s2µÄ³¤¶È´óÓÚ»òµÈÓÚÒª¿½±´µÄ×Ö·ûÊıÊ±£¬Òª¸øs1Ä©Î²¼ÓÉÏ'\0',
-		//²¢ÇÒ×¢ÒâÒªÔÚµ÷ÓÃº¯ÊıÖ®Ç°£¬²»È»strlen(s1)»á·¢Éú¸Ä±ä
-		if (strlen(s2) >= num)
-			s1[strlen(s1) + num] = '\0';
-		puts(mystrncpy(s1, s2, num));	//Êä³ö¿½±´ºóµÄ×Ö·û´®s1
-		printf("Input the first string (type quit to quit):\n");
-	}
-	
-	printf("Bye.\n");
+    char s1[SIZE];
+    char s2[SIZE];
+    int num;
+    
+    printf("Input the first string (type quit to quit):\n");
+    while (strcmp(gets(s1), QUIT))		//è¾“å…¥quitç»“æŸ
+    {
+        printf("Input the second string:\n");
+        gets(s2);
+        printf("Input the number of char copied from s2: ");
+        scanf("%d", &num);
+        getchar();						//è·³è¿‡å›è½¦
+        //å½“s2çš„é•¿åº¦å¤§äºæˆ–ç­‰äºè¦æ‹·è´çš„å­—ç¬¦æ•°æ—¶ï¼Œè¦ç»™s1æœ«å°¾åŠ ä¸Š'\0',
+        //å¹¶ä¸”æ³¨æ„è¦åœ¨è°ƒç”¨å‡½æ•°ä¹‹å‰ï¼Œä¸ç„¶strlen(s1)ä¼šå‘ç”Ÿæ”¹å˜
+        if (strlen(s2) >= num)
+            s1[strlen(s1) + num] = '\0';
+        puts(mystrncpy(s1, s2, num));	//è¾“å‡ºæ‹·è´åçš„å­—ç¬¦ä¸²s1
+        printf("Input the first string (type quit to quit):\n");
+    }
+    
+    printf("Bye.\n");
 }
 
 char * mystrncpy(char * p1, char * p2, int n)
 {
-	int i = 1;
-	char * p = p1;
+    int i = 1;
+    char * p = p1;
 
-	while (*p1++)		
-		continue;
-	//p1Ö¸ÕëÖ¸ÏòÎ»ÖÃÒÑ¾­³¬¹ı¿Õ×Ö·û
-	*--p1 = *p2;		
-	while (i < n && *p2)
-	{
-		*++p1 = *++p2;
-		i++;
-	}
+    while (*p1++)
+        continue;
+    //p1æŒ‡é’ˆæŒ‡å‘ä½ç½®å·²ç»è¶…è¿‡ç©ºå­—ç¬¦
+    *--p1 = *p2;
+    while (i < n && *p2)
+    {
+        *++p1 = *++p2;
+        i++;
+    }
 
-	return p;
+    return p;
 }

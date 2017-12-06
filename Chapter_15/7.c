@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define ID_MASK 0xff
-//À¨ºÅÈ±Ê§»á³ö´í
+//æ‹¬å·ç¼ºå¤±ä¼šå‡ºé”™
 #define SIZE_MASK (0x7f << 8)
 #define ALIGN_MASK (0x3 << 15)
 
@@ -20,90 +20,90 @@ void print(unsigned long);
 
 int main(void)
 {
-	unsigned long type = 0;
-	char choice;
-	char ch;
-	int num;
+    unsigned long type = 0;
+    char choice;
+    char ch;
+    int num;
 
-	print(type);
-	while ((choice = get_choice()) != 'q')
-	{
-		switch (choice)
-		{
-		case 'f': printf("Enter font ID (0 - 256): ");
-				  scanf("%lu", &num);
-				  getchar();
-				  type &= ~ID_MASK;		//°Ñ±íÊ¾×ÖÌåIDµÄÎ»Çå¿Õ
-				  type |= num;			//ÖØÖÃ×ÖÌåID
-				  break;
-		case 's': printf("Enter font ID (0 - 127): ");
-				  scanf("%lu", &num);
-				  getchar();
-				  type &= ~SIZE_MASK;
-				  type |= (num << 8);
-				  break;
-		case 'a': type &= ~ALIGN_MASK;
-				  printf("Select alignment:\n");
-				  printf("l)left   c)center   r)right\n");
-				  if ((ch = get_select()) == 'c')
-					  type |= CENTER;
-				  else if (ch == 'r')
-					  type |= RIGHT;
-					  break;
-		case 'b': type ^= BOLD;	
-				  break;
-		case 'i': type ^= ITALIC;
-			      break;
-		default : break;
-		}
-		print(type);
-	}
-	printf("Bye.\n");
+    print(type);
+    while ((choice = get_choice()) != 'q')
+    {
+        switch (choice)
+        {
+        case 'f': printf("Enter font ID (0 - 256): ");
+                  scanf("%lu", &num);
+                  getchar();
+                  type &= ~ID_MASK;		//æŠŠè¡¨ç¤ºå­—ä½“IDçš„ä½æ¸…ç©º
+                  type |= num;			//é‡ç½®å­—ä½“ID
+                  break;
+        case 's': printf("Enter font ID (0 - 127): ");
+                  scanf("%lu", &num);
+                  getchar();
+                  type &= ~SIZE_MASK;
+                  type |= (num << 8);
+                  break;
+        case 'a': type &= ~ALIGN_MASK;
+                  printf("Select alignment:\n");
+                  printf("l)left   c)center   r)right\n");
+                  if ((ch = get_select()) == 'c')
+                      type |= CENTER;
+                  else if (ch == 'r')
+                      type |= RIGHT;
+                      break;
+        case 'b': type ^= BOLD;
+                  break;
+        case 'i': type ^= ITALIC;
+                  break;
+        default : break;
+        }
+        print(type);
+    }
+    printf("Bye.\n");
 
-	return 0;
+    return 0;
 }
 
 char get_choice(void)
 {
-	char ch;
-	
-	printf("f)change font\ts)change size\ta)change alignment\n");
-	printf("b)toggle bold\ti)toggle italic\nq)quit\n");
+    char ch;
+    
+    printf("f)change font\ts)change size\ta)change alignment\n");
+    printf("b)toggle bold\ti)toggle italic\nq)quit\n");
 
-	while (strchr("fsabiq", ch = getchar()) == NULL)
-	{
-		while (getchar() != '\n')
-			continue;
-		printf("Please input the right letter.\n");
-	}
-	while (getchar() != '\n')
-		continue;
-	
-	return ch;
+    while (strchr("fsabiq", ch = getchar()) == NULL)
+    {
+        while (getchar() != '\n')
+            continue;
+        printf("Please input the right letter.\n");
+    }
+    while (getchar() != '\n')
+        continue;
+    
+    return ch;
 }
 
 char get_select(void)
 {
-	char ch;
+    char ch;
 
-	while (strchr("lcr", ch = getchar()) == NULL)
-	{
-		while (getchar() != '\n')
-			continue;
-		printf("Please input the right letter.\n");
-	}
-	while (getchar() != '\n')
-		continue;
-	
-	return ch;
+    while (strchr("lcr", ch = getchar()) == NULL)
+    {
+        while (getchar() != '\n')
+            continue;
+        printf("Please input the right letter.\n");
+    }
+    while (getchar() != '\n')
+        continue;
+    
+    return ch;
 }
 
 void print(unsigned long num)
 {
-	printf("\n ID  SIZE  ALIGNMENT   B    I\n");
-	printf("%3u", num & ID_MASK);
-	printf("%5u", (num & SIZE_MASK) >> 8);
-	printf("%10s", align[(num & ALIGN_MASK) >> 15]);
-	printf("%7s", open[(num & BOLD) >> 17]);
-	printf("%5s\n\n", open[(num & ITALIC) >> 18]);
+    printf("\n ID  SIZE  ALIGNMENT   B    I\n");
+    printf("%3u", num & ID_MASK);
+    printf("%5u", (num & SIZE_MASK) >> 8);
+    printf("%10s", align[(num & ALIGN_MASK) >> 15]);
+    printf("%7s", open[(num & BOLD) >> 17]);
+    printf("%5s\n\n", open[(num & ITALIC) >> 18]);
 }

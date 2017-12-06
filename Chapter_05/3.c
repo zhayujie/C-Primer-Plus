@@ -1,17 +1,17 @@
 #include<stdio.h>
-#define DAYS_PER_WEEK 7 //Ò»ÖÜ7Ìì
+#define DAYS_PER_WEEK 7 //ä¸€å‘¨7å¤©
 int main(void)
 {
-	int day,week,left;
-	printf("Input the number of days: ");
-	scanf("%d",&day);
-	while(day>0)
-	{
-		week=day/DAYS_PER_WEEK;
-		left=day%DAYS_PER_WEEK;
-		printf("%d days are %d weeks, %d days.\n",day,week,left);
+    int day,week,left;
+    printf("Input the number of days: ");
+    scanf("%d",&day);
+    while(day>0)
+    {
+        week=day/DAYS_PER_WEEK;
+        left=day%DAYS_PER_WEEK;
+        printf("%d days are %d weeks, %d days.\n",day,week,left);
         printf("Next input: ");
-		scanf("%d",&day);
-	}
-		return 0;
+        scanf("%d",&day);
+    }
+        return 0;
 }

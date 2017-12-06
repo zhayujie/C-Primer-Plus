@@ -1,94 +1,94 @@
 #include <stdio.h>
-#define BASE1 8.75		
+#define BASE1 8.75
 #define BASE2 9.33
 #define BASE3 10.00
 #define BASE4 11.20
-//ËÄÖÖµÈ¼¶µÄ»ù±¾¹¤×Ê
-#define TIME 40			//³¬¹ý40hÎª¼Ó°à
-#define	MUL	1.5		//¼Ó°àÊ±¼äËã×÷Æ½Ê±µÄ1.5±¶
-#define	RATE1 0.15		//Ç°300ÃÀÔªµÄË°ÂÊ
-#define RATE2 0.2			//300-450ÃÀÔªµÄË°ÂÊ
-#define RATE3 0.25		//´óÓÚ450ÃÀÔªµÄË°ÂÊ
-#define BREAK1 300		//Ë°ÂÊµÄµÚÒ»¸ö·Ö½çµã
-#define BREAK2 450		//Ë°ÂÊµÄµÚ¶þ¸ö·Ö½çµã
-#define LENGTH 65		//*µÄ³¤¶È
+//å››ç§ç­‰çº§çš„åŸºæœ¬å·¥èµ„
+#define TIME 40			//è¶…è¿‡40hä¸ºåŠ ç­
+#define	MUL	1.5		//åŠ ç­æ—¶é—´ç®—ä½œå¹³æ—¶çš„1.5å€
+#define	RATE1 0.15		//å‰300ç¾Žå…ƒçš„ç¨ŽçŽ‡
+#define RATE2 0.2			//300-450ç¾Žå…ƒçš„ç¨ŽçŽ‡
+#define RATE3 0.25		//å¤§äºŽ450ç¾Žå…ƒçš„ç¨ŽçŽ‡
+#define BREAK1 300		//ç¨ŽçŽ‡çš„ç¬¬ä¸€ä¸ªåˆ†ç•Œç‚¹
+#define BREAK2 450		//ç¨ŽçŽ‡çš„ç¬¬äºŒä¸ªåˆ†ç•Œç‚¹
+#define LENGTH 65		//*çš„é•¿åº¦
 
 char get_choice(void);
 void calculate(double base);
 int main(void)
 {
-	double base;
-	char choice;
-	
-	while ((choice = get_choice()) != 'q')
-	{
-		switch (choice)
-		{
-			case 'a': base = BASE1;
-					  break;
-			case 'b': base = BASE2;
-					  break;
-			case 'c': base = BASE3;
-					  break;
-			case 'd': base = BASE4;
-					  break;
-			default: printf("Please respond with a, b, c, d or q.\n");
-					 break;
-		}	
-		if (choice >= 'a' && choice <= 'd')
-			calculate(base);
-	}
+    double base;
+    char choice;
+    
+    while ((choice = get_choice()) != 'q')
+    {
+        switch (choice)
+        {
+            case 'a': base = BASE1;
+                      break;
+            case 'b': base = BASE2;
+                      break;
+            case 'c': base = BASE3;
+                      break;
+            case 'd': base = BASE4;
+                      break;
+            default: printf("Please respond with a, b, c, d or q.\n");
+                     break;
+        }
+        if (choice >= 'a' && choice <= 'd')
+            calculate(base);
+    }
 
-	return 0;
+    return 0;
 }
-	
-//¼ÆËãºÍÊä³ö½á¹ûµÄº¯Êý
+    
+//è®¡ç®—å’Œè¾“å‡ºç»“æžœçš„å‡½æ•°
 void calculate(double base)
 {
-	double hour, gross, tax;
+    double hour, gross, tax;
 
-	printf("Input your work hours in a week: ");
-	scanf("%lf", &hour);
-	while (getchar() != '\n')
-		continue;					//Ìø¹ý»Ø³µ
-	if (hour <= TIME)
-		gross = hour * base;
-	else
-		gross = TIME * base + (hour - TIME) * MUL * base;
-	//¼ÆËã×ÜÊÕÈë
-	if (gross <= BREAK1)
-		tax = gross * RATE1;
-	else if (gross <= BREAK2)
-		tax = BREAK1 * RATE1 + (gross - BREAK1) * RATE2;
-	else
-		tax = BREAK1 * RATE1 + (BREAK2 - BREAK1) * RATE2 
-			+ (gross - BREAK2) * RATE3;
-	//¼ÆËãË°½ð
-	printf("Your gross income is $%.2lf\nYour tax is $%.2lf\n" 
-			"Your net income is $%.2lf\n",
-			gross, tax, (gross - tax));
-	printf("\n");
+    printf("Input your work hours in a week: ");
+    scanf("%lf", &hour);
+    while (getchar() != '\n')
+        continue;					//è·³è¿‡å›žè½¦
+    if (hour <= TIME)
+        gross = hour * base;
+    else
+        gross = TIME * base + (hour - TIME) * MUL * base;
+    //è®¡ç®—æ€»æ”¶å…¥
+    if (gross <= BREAK1)
+        tax = gross * RATE1;
+    else if (gross <= BREAK2)
+        tax = BREAK1 * RATE1 + (gross - BREAK1) * RATE2;
+    else
+        tax = BREAK1 * RATE1 + (BREAK2 - BREAK1) * RATE2
+            + (gross - BREAK2) * RATE3;
+    //è®¡ç®—ç¨Žé‡‘
+    printf("Your gross income is $%.2lf\nYour tax is $%.2lf\n"
+            "Your net income is $%.2lf\n",
+            gross, tax, (gross - tax));
+    printf("\n");
 }
 
-//´òÓ¡Ñ¡Ôñ½çÃæ²¢ÈÃÓÃ»§ÊäÈëµÄº¯Êý
+//æ‰“å°é€‰æ‹©ç•Œé¢å¹¶è®©ç”¨æˆ·è¾“å…¥çš„å‡½æ•°
 char get_choice(void)
 {
-	char ch;
-	int count;
+    char ch;
+    int count;
 
-	for (count = 0; count < LENGTH; count++)
-		printf("*");
-	printf("\nEnter the letter corresponding to the desired pay rate or action:\n");
-	printf("%-36s%s","a) $8.75/hr", "b) $9.33/hr\n");
-	printf("%-36s%s","c) $10.00/hr", "d) $11.20/hr\n");
-	printf("%s\n", "q) quit");
-	for (count = 0; count < LENGTH; count++)
-		printf("*");
-	printf("\n");
+    for (count = 0; count < LENGTH; count++)
+        printf("*");
+    printf("\nEnter the letter corresponding to the desired pay rate or action:\n");
+    printf("%-36s%s","a) $8.75/hr", "b) $9.33/hr\n");
+    printf("%-36s%s","c) $10.00/hr", "d) $11.20/hr\n");
+    printf("%s\n", "q) quit");
+    for (count = 0; count < LENGTH; count++)
+        printf("*");
+    printf("\n");
 
-	ch = getchar();
-	while (getchar() != '\n')
-		continue;					//Ìø¹ýÊä³öÐÐÊ£ÓàÄÚÈÝ
+    ch = getchar();
+    while (getchar() != '\n')
+        continue;					//è·³è¿‡è¾“å‡ºè¡Œå‰©ä½™å†…å®¹
 
-	return ch;
+    return ch;
 }

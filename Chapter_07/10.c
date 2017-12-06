@@ -1,53 +1,53 @@
 #include <stdio.h>
 #define RATE1 0.15
 #define RATE2 0.28
-#define SINGLE 17850	//µ¥ÉíÈËÈºµÄË°ÂÊ·Ö½çµã
-#define HOST 23900		//»§Ö÷ÈËÈºµÄË°ÂÊ·Ö½çµã
-#define MAR_SHA	29750	//ÒÑ»é¹²ÓĞÈËÈºµÄ·Ö½çµã
-#define MAR_DEV	14875	//ÒÑ»éÀëÒìÈËÈºµÄ·Ö½çµã
+#define SINGLE 17850	//å•èº«äººç¾¤çš„ç¨ç‡åˆ†ç•Œç‚¹
+#define HOST 23900		//æˆ·ä¸»äººç¾¤çš„ç¨ç‡åˆ†ç•Œç‚¹
+#define MAR_SHA	29750	//å·²å©šå…±æœ‰äººç¾¤çš„åˆ†ç•Œç‚¹
+#define MAR_DEV	14875	//å·²å©šç¦»å¼‚äººç¾¤çš„åˆ†ç•Œç‚¹
 int main(void)
-{	
-	int num;
-	double income, tax_break, tax;
+{
+    int num;
+    double income, tax_break, tax;
 
-    printpart: printf("Please enter Corresponding" 
-					"figures to select the type\n");
-	printf("1 single, 2 host, 3 married and shared, " 
-			"4 married but devoced and 5 to quit.\n");
-	scanf("%d", &num);
-	switch (num)
-	{
-		case 1: tax_break = SINGLE;
-				break;
-		case 2: tax_break = HOST;
-				break;
-		case 3: tax_break = MAR_SHA;
-				break;
-		case 4: tax_break = MAR_DEV;
-				break;
-		case 5:	printf("quit.\n");
-				return 0;
-		default: printf("Please input right number.");
-				 goto printpart;		//»Øµ½ÊäÈë½×¶Î
-	}
-	printf("Enter your income: ");		//Ö¸¶¨ÖÖÀàºÍÊÕÈë
-	while (scanf("%lf", &income) == 1)	
-	{
-		if (income <= tax_break)
-			tax = income * RATE1;
-		else
-			tax = tax_break * RATE1 + (income - tax_break) * RATE2;
-		//¼ÆËãË°½ğ
-		printf("The tax is $%.2lf.\n", tax);
-		printf("Your next input: \n");
-		goto printpart;					//»Øµ½ÊäÈë½×¶Î
-	}
+    printpart: printf("Please enter Corresponding"
+                    "figures to select the type\n");
+    printf("1 single, 2 host, 3 married and shared, "
+            "4 married but devoced and 5 to quit.\n");
+    scanf("%d", &num);
+    switch (num)
+    {
+        case 1: tax_break = SINGLE;
+                break;
+        case 2: tax_break = HOST;
+                break;
+        case 3: tax_break = MAR_SHA;
+                break;
+        case 4: tax_break = MAR_DEV;
+                break;
+        case 5:	printf("quit.\n");
+                return 0;
+        default: printf("Please input right number.");
+                 goto printpart;		//å›åˆ°è¾“å…¥é˜¶æ®µ
+    }
+    printf("Enter your income: ");		//æŒ‡å®šç§ç±»å’Œæ”¶å…¥
+    while (scanf("%lf", &income) == 1)
+    {
+        if (income <= tax_break)
+            tax = income * RATE1;
+        else
+            tax = tax_break * RATE1 + (income - tax_break) * RATE2;
+        //è®¡ç®—ç¨é‡‘
+        printf("The tax is $%.2lf.\n", tax);
+        printf("Your next input: \n");
+        goto printpart;					//å›åˆ°è¾“å…¥é˜¶æ®µ
+    }
 
-	return 0;
+    return 0;
 }
-	
+    
 
 
 
-	
-	
+    
+    

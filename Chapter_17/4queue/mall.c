@@ -11,109 +11,109 @@ Queue line1;
 Queue line2;
 Item temp;
 
-int hours;					//Ä£ÄâµÄĞ¡Ê±Êı
-int cust_per_hour;			//Æ½¾ùÃ¿Ğ¡Ê±À´µÄ¹Ë¿ÍÊı
-int wait_time1 = 0;         //Ì¯Î»1´Óµ±Ç°µ½¿ÕÏĞµÄÊ±¼ä	
-int wait_time2 = 0;         //Ì¯Î»2´Óµ±Ç°µ½¿ÕÏĞµÄÊ±¼ä
-long cycle;					//Ñ­»·´ÎÊı
-long cyclelimit;			//Ñ­»·µÄ×î´óÊı
-long turnaways = 0;			//±»¾ÜµÄ¹Ë¿ÍÊı
-long customers = 0;			//¼ÓÈë¶ÓÁĞµÄ¹Ë¿ÍÊı
-long served = 0;			//½ÓÊÜ·şÎñµÄ¹Ë¿ÍÊı
-long sum_line = 0;			//ÀÛ¼Æ¶ÓÁĞ×Ü³¤
-long line_wait = 0;			//ÀÛ¼Æ¶ÓÁĞµÈºòÊ±¼ä
-double min_per_cust;		//¹Ë¿Íµ½À´µÄÆ½¾ù¼ä¸ôÊ±¼ä	
+int hours;					//æ¨¡æ‹Ÿçš„å°æ—¶æ•°
+int cust_per_hour;			//å¹³å‡æ¯å°æ—¶æ¥çš„é¡¾å®¢æ•°
+int wait_time1 = 0;         //æ‘Šä½1ä»å½“å‰åˆ°ç©ºé—²çš„æ—¶é—´
+int wait_time2 = 0;         //æ‘Šä½2ä»å½“å‰åˆ°ç©ºé—²çš„æ—¶é—´
+long cycle;					//å¾ªç¯æ¬¡æ•°
+long cyclelimit;			//å¾ªç¯çš„æœ€å¤§æ•°
+long turnaways = 0;			//è¢«æ‹’çš„é¡¾å®¢æ•°
+long customers = 0;			//åŠ å…¥é˜Ÿåˆ—çš„é¡¾å®¢æ•°
+long served = 0;			//æ¥å—æœåŠ¡çš„é¡¾å®¢æ•°
+long sum_line = 0;			//ç´¯è®¡é˜Ÿåˆ—æ€»é•¿
+long line_wait = 0;			//ç´¯è®¡é˜Ÿåˆ—ç­‰å€™æ—¶é—´
+double min_per_cust;		//é¡¾å®¢åˆ°æ¥çš„å¹³å‡é—´éš”æ—¶é—´
 
 int main(void)
 {
-	printf("Enter the number of simulation hours:\n");
-	scanf("%d", &hours);
-	printf("Enter the average number of customers per hour:\n");
-	scanf("%d", &cust_per_hour);
-	cyclelimit = MIN_PER_HOUR * hours;
-	min_per_cust = MIN_PER_HOUR / cust_per_hour;
+    printf("Enter the number of simulation hours:\n");
+    scanf("%d", &hours);
+    printf("Enter the average number of customers per hour:\n");
+    scanf("%d", &cust_per_hour);
+    cyclelimit = MIN_PER_HOUR * hours;
+    min_per_cust = MIN_PER_HOUR / cust_per_hour;
 
-	InitializeQueue(&line1);
-	InitializeQueue(&line2);
-	srand((unsigned int) time(0));
-	for (cycle = 0; cycle < cyclelimit; cycle++)
-	{
-		if (newcustomer(min_per_cust))		//Èç¹ûÒ»·ÖÖÓÄÚÓĞ¹Ë¿ÍÀ´
-		{
-			if (QueueIsFull(&line1) && QueueIsFull(&line2))	
-				turnaways++;
-			else
-			{
-				customers++;
-				temp = customertime(cycle);
-				if (line1.items > line2.items)
-					EnQueue(&line2, temp);
-				else if (line1.items < line2.items)
-					EnQueue(&line1, temp);
-				else
-					(rand() % 2) ? EnQueue(&line1, temp) : EnQueue(&line2, temp);
-			}
-		}
+    InitializeQueue(&line1);
+    InitializeQueue(&line2);
+    srand((unsigned int) time(0));
+    for (cycle = 0; cycle < cyclelimit; cycle++)
+    {
+        if (newcustomer(min_per_cust))		//å¦‚æœä¸€åˆ†é’Ÿå†…æœ‰é¡¾å®¢æ¥
+        {
+            if (QueueIsFull(&line1) && QueueIsFull(&line2))
+                turnaways++;
+            else
+            {
+                customers++;
+                temp = customertime(cycle);
+                if (line1.items > line2.items)
+                    EnQueue(&line2, temp);
+                else if (line1.items < line2.items)
+                    EnQueue(&line1, temp);
+                else
+                    (rand() % 2) ? EnQueue(&line1, temp) : EnQueue(&line2, temp);
+            }
+        }
 
-		if (wait_time1 <= 0 && !QueueIsEmpty(&line1))
-		{
-			DeQueue(&line1, &temp);
-			wait_time1 = temp.processtime;
-			line_wait += cycle - temp.arrive;
-			served++;
-		}
+        if (wait_time1 <= 0 && !QueueIsEmpty(&line1))
+        {
+            DeQueue(&line1, &temp);
+            wait_time1 = temp.processtime;
+            line_wait += cycle - temp.arrive;
+            served++;
+        }
 
-		if (wait_time2 <= 0 && !QueueIsEmpty(&line2))
-		{
-			DeQueue(&line2, &temp);
-			wait_time2 = temp.processtime;
-			line_wait += cycle - temp.arrive;
-			served++;
-		}
+        if (wait_time2 <= 0 && !QueueIsEmpty(&line2))
+        {
+            DeQueue(&line2, &temp);
+            wait_time2 = temp.processtime;
+            line_wait += cycle - temp.arrive;
+            served++;
+        }
 
-		if (wait_time1 > 0)
-			wait_time1--;
+        if (wait_time1 > 0)
+            wait_time1--;
 
-		if (wait_time2 > 0)
-			wait_time2--;
+        if (wait_time2 > 0)
+            wait_time2--;
 
-		sum_line += (long) QueueItemCount(&line1) 
-			+ (long) QueueItemCount(&line2);
-	}
+        sum_line += (long) QueueItemCount(&line1)
+            + (long) QueueItemCount(&line2);
+    }
 
-	if (customers > 0)
-	{
-		printf("customers accepted: %ld\n", customers);
-		printf("  customers served: %ld\n", served);
-		printf("         turnaways: %ld\n", turnaways);
-		printf("average queue size: %.2f\n", (double) sum_line / cyclelimit);
-		printf(" average wait time: %.2f minutes\n", (double) line_wait / served);
-	}
-	else
-		puts("No customers!");
-	DeleteAll(&line1);
-	DeleteAll(&line2);
-	puts("Bye!");
+    if (customers > 0)
+    {
+        printf("customers accepted: %ld\n", customers);
+        printf("  customers served: %ld\n", served);
+        printf("         turnaways: %ld\n", turnaways);
+        printf("average queue size: %.2f\n", (double) sum_line / cyclelimit);
+        printf(" average wait time: %.2f minutes\n", (double) line_wait / served);
+    }
+    else
+        puts("No customers!");
+    DeleteAll(&line1);
+    DeleteAll(&line2);
+    puts("Bye!");
 
-	return 0;
+    return 0;
 }
 
-//Ò»·ÖÖÓÖ®ÄÚÓĞ¹Ë¿ÍÀ´£¬·µ»Ø1
+//ä¸€åˆ†é’Ÿä¹‹å†…æœ‰é¡¾å®¢æ¥ï¼Œè¿”å›1
 int newcustomer(double x)
 {
-	if (x * rand() / RAND_MAX < 1)
-		return 1;
-	else
-		return 0;
+    if (x * rand() / RAND_MAX < 1)
+        return 1;
+    else
+        return 0;
 }
 
 Item customertime(long when)
 {
-	Item cust;
+    Item cust;
 
-	cust.arrive = when;
-	cust.processtime = rand() % 3 + 1;
+    cust.arrive = when;
+    cust.processtime = rand() % 3 + 1;
 
-	return cust;
+    return cust;
 }
 

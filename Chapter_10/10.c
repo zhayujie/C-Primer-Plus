@@ -1,38 +1,38 @@
 #include <stdio.h>
 #define SIZE 4
-void print_ar(double ar[], int n);		//´òÓ¡Êı×éÔªËØµÄº¯Êı
-//½«Á½¸öÊı×éÏà¼Ó·ÅÈëµÚÈı¸öÊı×éµÄº¯Êı
+void print_ar(double ar[], int n);		//æ‰“å°æ•°ç»„å…ƒç´ çš„å‡½æ•°
+//å°†ä¸¤ä¸ªæ•°ç»„ç›¸åŠ æ”¾å…¥ç¬¬ä¸‰ä¸ªæ•°ç»„çš„å‡½æ•°
 void add_ar(double ar1[], double ar2[], double ar3[], int n);
 int main(void)
 {
-	double ar1[SIZE] = {2, 4, 5, 8};
-	double ar2[SIZE] = {1, 0, 4, 6};
-	double ar3[SIZE];
-	
-	printf("The first array:  ");
-	print_ar(ar1, SIZE);
-	printf("The second array: ");
-	print_ar(ar2, SIZE);
-	add_ar(ar1, ar2, ar3, SIZE);
-	printf("The third array:  ");
-	print_ar(ar3, SIZE);
+    double ar1[SIZE] = {2, 4, 5, 8};
+    double ar2[SIZE] = {1, 0, 4, 6};
+    double ar3[SIZE];
+    
+    printf("The first array:  ");
+    print_ar(ar1, SIZE);
+    printf("The second array: ");
+    print_ar(ar2, SIZE);
+    add_ar(ar1, ar2, ar3, SIZE);
+    printf("The third array:  ");
+    print_ar(ar3, SIZE);
 
-	return 0;
+    return 0;
 }
 
 void print_ar(double ar[], int n)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < n; i++)
-		printf("%g ", ar[i]);
-	printf("\n");
+    for (i = 0; i < n; i++)
+        printf("%g ", ar[i]);
+    printf("\n");
 }
 
 void add_ar(double ar1[], double ar2[], double ar3[], int n)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < n; i++)
-		ar3[i] = ar1[i] + ar2[i];
+    for (i = 0; i < n; i++)
+        ar3[i] = ar1[i] + ar2[i];
 }

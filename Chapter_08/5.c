@@ -1,44 +1,44 @@
 #include <stdio.h>
-#define LOW 1			//³õÊ¼ÏÂÏŞ
-#define HIGH 100		//³õÊ¼ÉÏÏŞ
+#define LOW 1			//åˆå§‹ä¸‹é™
+#define HIGH 100		//åˆå§‹ä¸Šé™
 int get_guess(void);
 int main(void)
 {
-	char response;
-	int guess;
-	int low = LOW;
-	int high = HIGH;
+    char response;
+    int guess;
+    int low = LOW;
+    int high = HIGH;
 
-	guess = (low + high) / 2;
-	printf("Pick an integer from %d to %d. I will try to guess ",
-			LOW, HIGH);
-	printf("it.\nRespond with a y if my guess is right, with an s if it\n");
-	printf("is small and with a b if it is big.\n");
-	printf("Uh...is your number %d?\n", guess);
-	while ((response = getchar()) != 'y')
-	{
-		if (response == 's')
-		{
-			low = guess;
-			guess = (guess + high) / 2;
-		}
-		else if (response == 'b')
-		{	
-			high = guess;
-			guess = (guess + low) / 2;
-		}
-		else
-			printf("Sorry, I understand only y, s and b.\n");
-		
-		printf("Well, then, is it %d?\n", guess);
-		//Ìø¹ıÊ£ÓàÊäÈëĞĞ
-		while (getchar() != '\n')
-			continue;
-		//Ê¹È¡ÖµÄÜµ½´ïÉÏÏŞ
-		if (guess == HIGH - 1)
-			guess++;
-	}
-	printf("I knew i could do it!\n");
-	
-	return 0;
+    guess = (low + high) / 2;
+    printf("Pick an integer from %d to %d. I will try to guess ",
+            LOW, HIGH);
+    printf("it.\nRespond with a y if my guess is right, with an s if it\n");
+    printf("is small and with a b if it is big.\n");
+    printf("Uh...is your number %d?\n", guess);
+    while ((response = getchar()) != 'y')
+    {
+        if (response == 's')
+        {
+            low = guess;
+            guess = (guess + high) / 2;
+        }
+        else if (response == 'b')
+        {
+            high = guess;
+            guess = (guess + low) / 2;
+        }
+        else
+            printf("Sorry, I understand only y, s and b.\n");
+        
+        printf("Well, then, is it %d?\n", guess);
+        //è·³è¿‡å‰©ä½™è¾“å…¥è¡Œ
+        while (getchar() != '\n')
+            continue;
+        //ä½¿å–å€¼èƒ½åˆ°è¾¾ä¸Šé™
+        if (guess == HIGH - 1)
+            guess++;
+    }
+    printf("I knew i could do it!\n");
+    
+    return 0;
 }

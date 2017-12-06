@@ -3,21 +3,21 @@
 #define SIZE 255
 int main(void)
 {
-	int index;
-	char ch[SIZE];
+    int index;
+    char ch[SIZE];
 
-	printf("Enter a line: ");
-	for(index = 0, scanf("%c", &ch[0]); ch[index] != '\n';)
-	{
-		index++;
-		scanf("%c", &ch[index]);
-	}											//ÊäÈëÄÚÈİµ½×Ö·ûÊı×éÖĞ,»Ø³µÊ±½áÊø
-	for(index += 1; index < SIZE; index++)
-		ch[index] = '\0';						//½«Êı×éÊ£Óà¿Õ¼ä²¹³äÎª'\0'
+    printf("Enter a line: ");
+    for(index = 0, scanf("%c", &ch[0]); ch[index] != '\n';)
+    {
+        index++;
+        scanf("%c", &ch[index]);
+    }											//è¾“å…¥å†…å®¹åˆ°å­—ç¬¦æ•°ç»„ä¸­,å›è½¦æ—¶ç»“æŸ
+    for(index += 1; index < SIZE; index++)
+        ch[index] = '\0';						//å°†æ•°ç»„å‰©ä½™ç©ºé—´è¡¥å……ä¸º'\0'
     for(index = strlen(ch); index >=0; index--)
-		printf("%c", ch[index]);				//µ¹ĞòÊä³öÄÚÈİ
-	printf("\n");
+        printf("%c", ch[index]);				//å€’åºè¾“å‡ºå†…å®¹
+    printf("\n");
 
-	return 0;
+    return 0;
 }
 

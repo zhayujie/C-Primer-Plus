@@ -2,27 +2,27 @@
 #define SIZE 8
 int main()
 {
-	double num1[SIZE], num2[SIZE];
-	int index1, index2, index;
+    double num1[SIZE], num2[SIZE];
+    int index1, index2, index;
 
-	printf("Enter 8 numbers to the first array:\n");
-	for (index1 = 0; index1 < SIZE; index1++)
-		scanf("%lf", &num1[index1]);							//ÏòµÚÒ»¸öÊý×éÊäÈë8¸öÊý
-	num2[0] = num1[0];
-	for (index1 = 1, index2 = 1; index1 < SIZE; index1++, index2++)
-		num2[index2] = num2[index2-1] + num1[index1];			
-	//ÎªµÚ¶þ¸öÊý×é¸³Öµ£¨ÊÇµÚÒ»¸öÊý×é¶ÔÓ¦µÄÔªËØÖ®ºÍ£©
-	printf("The first array:  ");								
-	for (index=0; index < SIZE; index++) {
-		printf("%6.2f", num1[index]);
-	}															//Êä³öµÚÒ»¸öÊý×éµÄÄÚÈÝ
-	printf("\nThe second array: ");
-	for (index=0; index < SIZE; index++) {
-		printf("%6.2f", num2[index]);							//Êä³öµÚ¶þ¸öÊý×éµÄÄÚÈÝ				
-	}
-	printf("\n");
+    printf("Enter 8 numbers to the first array:\n");
+    for (index1 = 0; index1 < SIZE; index1++)
+        scanf("%lf", &num1[index1]);							//å‘ç¬¬ä¸€ä¸ªæ•°ç»„è¾“å…¥8ä¸ªæ•°
+    num2[0] = num1[0];
+    for (index1 = 1, index2 = 1; index1 < SIZE; index1++, index2++)
+        num2[index2] = num2[index2-1] + num1[index1];
+    //ä¸ºç¬¬äºŒä¸ªæ•°ç»„èµ‹å€¼ï¼ˆæ˜¯ç¬¬ä¸€ä¸ªæ•°ç»„å¯¹åº”çš„å…ƒç´ ä¹‹å’Œï¼‰
+    printf("The first array:  ");
+    for (index=0; index < SIZE; index++) {
+        printf("%6.2f", num1[index]);
+    }															//è¾“å‡ºç¬¬ä¸€ä¸ªæ•°ç»„çš„å†…å®¹
+    printf("\nThe second array: ");
+    for (index=0; index < SIZE; index++) {
+        printf("%6.2f", num2[index]);							//è¾“å‡ºç¬¬äºŒä¸ªæ•°ç»„çš„å†…å®¹
+    }
+    printf("\n");
 
-	return 0;
+    return 0;
 }
 
 

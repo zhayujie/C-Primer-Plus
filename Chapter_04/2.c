@@ -2,15 +2,15 @@
 #include<string.h>
 int main(void)
 {
-	char name[40];
+    char name[40];
     int width;
-	
-	
-	printf("Input your name: ");
-	scanf("%s",name);
-	width=strlen(name)+3;
-	printf("%*s\n",width,name); //输入的名和姓中间不能分隔
-	
-	return 0;
+    
+    
+    printf("Input your name: ");
+    scanf("%s",name);
+    width=strlen(name)+3;
+    printf("%*s\n",width,name); //杈撳叆鐨勫悕鍜屽涓棿涓嶈兘鍒嗛殧
+    
+    return 0;
 }
 

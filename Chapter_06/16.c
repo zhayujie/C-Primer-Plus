@@ -1,22 +1,22 @@
 #include <stdio.h>
-#define RATE_DAPHNE 0.1														
-#define RATE_DEIRDRE 0.05					//Á½ÈËµÄÀûÂÊ
-#define	MONEY 100						
+#define RATE_DAPHNE 0.1
+#define RATE_DEIRDRE 0.05					//ä¸¤äººçš„åˆ©ç‡
+#define	MONEY 100
 int main(void)
 {
-	int year;
-	double daphne = MONEY, deirdre = MONEY;	//Á½ÈËµÄ³õÊ¼Í¶×Ê¶îÏàÍ¬
+    int year;
+    double daphne = MONEY, deirdre = MONEY;	//ä¸¤äººçš„åˆå§‹æŠ•èµ„é¢ç›¸åŒ
 
-	for (year = 1; daphne >= deirdre; year++)
-	{
-		daphne += MONEY * RATE_DAPHNE;
-		deirdre += deirdre * RATE_DEIRDRE;
-	}					
-	//¼ÆËãDeirdreÍ¶×Ê¶î³¬¹ıDaphneĞèÒªµÄÄêÊıºÍµ±Ê±µÄ½ğ¶î
-	printf("After %d year, Deirdre's investment will be more than Daphne's,\n"
-		"Daphne's investment will be $%lf,\nand Deirdre's investment will be $%lf.\n",
-		year, daphne, deirdre);				//Êä³ö½á¹û
+    for (year = 1; daphne >= deirdre; year++)
+    {
+        daphne += MONEY * RATE_DAPHNE;
+        deirdre += deirdre * RATE_DEIRDRE;
+    }
+    //è®¡ç®—DeirdreæŠ•èµ„é¢è¶…è¿‡Daphneéœ€è¦çš„å¹´æ•°å’Œå½“æ—¶çš„é‡‘é¢
+    printf("After %d year, Deirdre's investment will be more than Daphne's,\n"
+        "Daphne's investment will be $%lf,\nand Deirdre's investment will be $%lf.\n",
+        year, daphne, deirdre);				//è¾“å‡ºç»“æœ
 
-	return 0;
+    return 0;
 }
-	
+    

@@ -6,206 +6,206 @@
 #define MAXAUTH 40
 #define MAXBKS 10
 
-int count = 0;							//Íâ²¿±äÁ¿£¬ÊéµÄÊıÄ¿
+int count = 0;							//å¤–éƒ¨å˜é‡ï¼Œä¹¦çš„æ•°ç›®
 
 struct book {
-	char title[MAXTITL];
-	char author[MAXAUTH];
-	float value;
+    char title[MAXTITL];
+    char author[MAXAUTH];
+    float value;
 };
 
-char * s_gets(char * st, int n);		//ÊäÈë×Ö·û´®µÄº¯Êı
-char get_choice(void);					//»ñÈ¡ÓÃ»§Ñ¡Ôñ
-void add(struct book *);				//Ìí¼ÓÈô¸É±¾Êé
-void change(struct book *);				//Ìæ»»Ò»±¾Êé
-void del(struct book *);				//É¾³ıÒ»±¾Êé
-void print(struct book *);				//´òÓ¡Êéµ¥
-void write_file(struct book *, char *);	//½«Êı¾İĞ´ÈëÎÄ¼ş
+char * s_gets(char * st, int n);		//è¾“å…¥å­—ç¬¦ä¸²çš„å‡½æ•°
+char get_choice(void);					//è·å–ç”¨æˆ·é€‰æ‹©
+void add(struct book *);				//æ·»åŠ è‹¥å¹²æœ¬ä¹¦
+void change(struct book *);				//æ›¿æ¢ä¸€æœ¬ä¹¦
+void del(struct book *);				//åˆ é™¤ä¸€æœ¬ä¹¦
+void print(struct book *);				//æ‰“å°ä¹¦å•
+void write_file(struct book *, char *);	//å°†æ•°æ®å†™å…¥æ–‡ä»¶
 
 int main(void)
 {
-	char name[LEN];
-	struct book library[MAXBKS];
-	char ch;
-	FILE * fp;
+    char name[LEN];
+    struct book library[MAXBKS];
+    char ch;
+    FILE * fp;
 
-	//´ò¿ªÎÄ¼ş²¢¶ÁÈ¡ÆäÖĞÄÚÈİµ½½á¹¹Ìå
-	printf("Please input the file name: ");
-	s_gets(name, LEN);
-	if ((fp = fopen(name, "a+b")) == NULL)
-	{
-		fprintf(stderr, "Can't open %s", name);
-		exit(EXIT_FAILURE);
-	}
-	rewind(fp);
-	while (count < MAXBKS && fread(&library[count], 
-		sizeof(struct book), 1, fp) == 1)
-	{
-		count++;						//µ±Ç°ÎÄ¼şÊı
-	}
-	fclose(fp);
-	
-	//´òÓ¡ÎÄ¼şÖĞÒÑÓĞÊı¾İ
-	printf("There are %d books:\n", count);
-	print(library);
+    //æ‰“å¼€æ–‡ä»¶å¹¶è¯»å–å…¶ä¸­å†…å®¹åˆ°ç»“æ„ä½“
+    printf("Please input the file name: ");
+    s_gets(name, LEN);
+    if ((fp = fopen(name, "a+b")) == NULL)
+    {
+        fprintf(stderr, "Can't open %s", name);
+        exit(EXIT_FAILURE);
+    }
+    rewind(fp);
+    while (count < MAXBKS && fread(&library[count],
+        sizeof(struct book), 1, fp) == 1)
+    {
+        count++;						//å½“å‰æ–‡ä»¶æ•°
+    }
+    fclose(fp);
+    
+    //æ‰“å°æ–‡ä»¶ä¸­å·²æœ‰æ•°æ®
+    printf("There are %d books:\n", count);
+    print(library);
 
-	//ÈÃÓÃ»§ÊäÈëÑ¡Ïî
-	while ((ch = get_choice()) != 'q')
-	{
-		switch (ch)
-		{
-			case 'a': add(library);
-					  break;
-			case 'c': change(library);
-					  break;
-			case 'd': del(library);
-					  break;
-			case 'p': print(library);
-					  break;
-			default: printf("Program error.\n");
-					break;
-		}
-	}
-	//½«Êı¾İÊä³öÖÁÎÄ¼şÖĞ
-	write_file(library, name);
-	
-	return 0;
+    //è®©ç”¨æˆ·è¾“å…¥é€‰é¡¹
+    while ((ch = get_choice()) != 'q')
+    {
+        switch (ch)
+        {
+            case 'a': add(library);
+                      break;
+            case 'c': change(library);
+                      break;
+            case 'd': del(library);
+                      break;
+            case 'p': print(library);
+                      break;
+            default: printf("Program error.\n");
+                    break;
+        }
+    }
+    //å°†æ•°æ®è¾“å‡ºè‡³æ–‡ä»¶ä¸­
+    write_file(library, name);
+    
+    return 0;
 }
 
 char get_choice(void)
 {
-	char ch;
-	
-	printf("Please input your choice:\n");
-	printf("a. add some books        c. change a book\n");
-	printf("d. delete a book         p. print all books\n");
-	printf("q. quit.\n");
-	while ((ch = getchar()) != 'a' && ch != 'c' && ch != 'd' &&
-		ch != 'p' && ch != 'q')
-	{
-		while (getchar() != '\n')
-			continue;
-		printf("Please input the right character.\n");
-	}
-	while (getchar() != '\n')
-			continue;
+    char ch;
+    
+    printf("Please input your choice:\n");
+    printf("a. add some books        c. change a book\n");
+    printf("d. delete a book         p. print all books\n");
+    printf("q. quit.\n");
+    while ((ch = getchar()) != 'a' && ch != 'c' && ch != 'd' &&
+        ch != 'p' && ch != 'q')
+    {
+        while (getchar() != '\n')
+            continue;
+        printf("Please input the right character.\n");
+    }
+    while (getchar() != '\n')
+            continue;
 
-	return ch;
+    return ch;
 }
 
 void add(struct book * ps)
 {
-	if (count == MAXBKS)
-		printf("Sorry, the list is full.\n");
-	else
-	{
-		printf("Please input the title (empty line to quit):\n");
-		while (count < MAXBKS && s_gets(ps[count].title, MAXTITL) != NULL
-			&& ps[count].title[0] != '\0')
-		{
-			printf("Input the author:\n");
-			s_gets(ps[count].author, MAXAUTH);
-			printf("Input the value:\n");
-			scanf("%f", &ps[count].value);
-			getchar();
-			printf("Now, next title (empty line to quit):\n");
-			count++;
-		}
-	}
+    if (count == MAXBKS)
+        printf("Sorry, the list is full.\n");
+    else
+    {
+        printf("Please input the title (empty line to quit):\n");
+        while (count < MAXBKS && s_gets(ps[count].title, MAXTITL) != NULL
+            && ps[count].title[0] != '\0')
+        {
+            printf("Input the author:\n");
+            s_gets(ps[count].author, MAXAUTH);
+            printf("Input the value:\n");
+            scanf("%f", &ps[count].value);
+            getchar();
+            printf("Now, next title (empty line to quit):\n");
+            count++;
+        }
+    }
 }
 
 void change(struct book * ps)
 {
-	int i;
-	char name[MAXTITL];
+    int i;
+    char name[MAXTITL];
 
-	if (count == 0)
-		printf("Sorry, the list is empty.\n");
-	else
-	{
-		printf("Please input the title of book you want to change:\n");
-		s_gets(name, MAXTITL);
-		for (i = 0; i < count; i++) 
-		{
-			if (!strcmp(name, ps[i].title))
-			{	
-				printf("Please input the title of new book:\n");
-				s_gets(ps[i].title, MAXTITL);
-				printf("Input the author:\n");
-				s_gets(ps[i].author, MAXAUTH);
-				printf("Input the value:\n");
-				scanf("%f", &ps[i].value);
-				getchar();
-				break;
-			}
-		}
-		if (i == count)
-			printf("Sorry, we can't find the book you input.\n");
-	}
-	
+    if (count == 0)
+        printf("Sorry, the list is empty.\n");
+    else
+    {
+        printf("Please input the title of book you want to change:\n");
+        s_gets(name, MAXTITL);
+        for (i = 0; i < count; i++)
+        {
+            if (!strcmp(name, ps[i].title))
+            {
+                printf("Please input the title of new book:\n");
+                s_gets(ps[i].title, MAXTITL);
+                printf("Input the author:\n");
+                s_gets(ps[i].author, MAXAUTH);
+                printf("Input the value:\n");
+                scanf("%f", &ps[i].value);
+                getchar();
+                break;
+            }
+        }
+        if (i == count)
+            printf("Sorry, we can't find the book you input.\n");
+    }
+    
 }
 
 void del(struct book * ps)
 {
-	char name[MAXTITL];
-	int i, j;
+    char name[MAXTITL];
+    int i, j;
 
-	if (count == 0)
-		printf("Sorry, the list is empty.\n");
-	printf("Please input the title of book you want to delete:\n");
-	s_gets(name, MAXTITL);
-	for (i = 0; i < count; i++) 
-	{
-		if (!strcmp(name, ps[i].title))
-		{	
-			for (j = i + 1; j < count; j++)
-				ps[j - 1] = ps[j];
-			count--;
-			strcpy(ps[count].title, "");
-			strcpy(ps[count].author, "");
-			ps[count].value = 0;
-			break;	
-		}
-	}
-	if (i == count)
-		printf("Sorry, we can't find the book you input.\n");
+    if (count == 0)
+        printf("Sorry, the list is empty.\n");
+    printf("Please input the title of book you want to delete:\n");
+    s_gets(name, MAXTITL);
+    for (i = 0; i < count; i++)
+    {
+        if (!strcmp(name, ps[i].title))
+        {
+            for (j = i + 1; j < count; j++)
+                ps[j - 1] = ps[j];
+            count--;
+            strcpy(ps[count].title, "");
+            strcpy(ps[count].author, "");
+            ps[count].value = 0;
+            break;
+        }
+    }
+    if (i == count)
+        printf("Sorry, we can't find the book you input.\n");
 }
 
 void print(struct book * ps)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < count; i++)
-	{
-		printf("%s by %s: $%g\n", ps[i].title, ps[i].author,
-			ps[i].value);
-	}
+    for (i = 0; i < count; i++)
+    {
+        printf("%s by %s: $%g\n", ps[i].title, ps[i].author,
+            ps[i].value);
+    }
 }
 
 void write_file(struct book * ps, char * st)
 {
-	FILE * fp;
+    FILE * fp;
 
-	fp = fopen(st, "w+b");
-	fwrite(ps, sizeof(struct book), count, fp);
-	fclose(fp);
+    fp = fopen(st, "w+b");
+    fwrite(ps, sizeof(struct book), count, fp);
+    fclose(fp);
 }
 
 char * s_gets(char * st, int n)
 {
-	char * ret_val;
-	char * find;
+    char * ret_val;
+    char * find;
 
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
-	{
-		find = strchr(st, '\n');
-		if (find)
-			*find = '\0';
-		else
-			while (getchar() != '\n')
-				continue;
-	}
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+            *find = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return ret_val;
+    return ret_val;
 }

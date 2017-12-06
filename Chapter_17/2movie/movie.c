@@ -2,95 +2,95 @@
 #include <stdlib.h>
 #include "movie.h"
 
-//³õÊ¼»¯Á´±íÎª¿Õ
+//åˆå§‹åŒ–é“¾è¡¨ä¸ºç©º
 void InitializeList(List * plist)
 {
-	plist->head = NULL;
-	plist->end = NULL;
+    plist->head = NULL;
+    plist->end = NULL;
 }
 
-//Á´±íÎª¿Õ,·µ»Ø1
+//é“¾è¡¨ä¸ºç©º,è¿”å›ž1
 int ListIsEmpty(const List * plist)
 {
-	if (plist->head == NULL)
-		return 1;
-	else
-		return 0;
+    if (plist->head == NULL)
+        return 1;
+    else
+        return 0;
 }
 
-//Á´±íÎªÂú£¬·µ»Ø1
+//é“¾è¡¨ä¸ºæ»¡ï¼Œè¿”å›ž1
 int ListIsFull(const List * plist)
 {
-	Node * pt;
-	int full;
+    Node * pt;
+    int full;
 
-	pt = (Node *)malloc(sizeof(Node));
-	if (pt == NULL)
-		full = 1;
-	else
-		full = 0;
-	free(pt);
+    pt = (Node *)malloc(sizeof(Node));
+    if (pt == NULL)
+        full = 1;
+    else
+        full = 0;
+    free(pt);
 
-	return full;
+    return full;
 }
 
-//ÎªÁ´±íÌí¼ÓÏî£¬³É¹¦·µ»Ø1
+//ä¸ºé“¾è¡¨æ·»åŠ é¡¹ï¼ŒæˆåŠŸè¿”å›ž1
 int AddItem(List * plist, Item item)
 {
-	Node * pnew;
+    Node * pnew;
 
-	pnew = (Node *)malloc(sizeof(Node));
-	if (pnew == NULL)
-		return 0;
-	
-	pnew->next = NULL;
-	pnew->item = item;
-	
-	if (plist->head == NULL)
-		plist->head = pnew;
-	else
-		plist->end->next = pnew;
-	plist->end = pnew;
-	
-	return 1;
+    pnew = (Node *)malloc(sizeof(Node));
+    if (pnew == NULL)
+        return 0;
+    
+    pnew->next = NULL;
+    pnew->item = item;
+    
+    if (plist->head == NULL)
+        plist->head = pnew;
+    else
+        plist->end->next = pnew;
+    plist->end = pnew;
+    
+    return 1;
 }
 
-//È·¶¨Á´±íµÄÏîÊý
+//ç¡®å®šé“¾è¡¨çš„é¡¹æ•°
 unsigned int ListItemCount(List * plist)
 {
-	unsigned int count = 0;
-	Node * pnode = plist->head;
+    unsigned int count = 0;
+    Node * pnode = plist->head;
 
-	while (pnode != NULL)
-	{
-		pnode = pnode->next;
-		count++;
-	}
+    while (pnode != NULL)
+    {
+        pnode = pnode->next;
+        count++;
+    }
 
-	return count;
-}	
-
-//±éÀúÁ´±í
-void Traverse(const List * plist, void (*pfun)(Item item))
-{
-	Node * pnode = plist->head;
-
-	while (pnode != NULL)
-	{
-		(*pfun)(pnode->item);
-		pnode = pnode->next;
-	}
+    return count;
 }
 
-//Çå¿ÕÁ´±í
+//éåŽ†é“¾è¡¨
+void Traverse(const List * plist, void (*pfun)(Item item))
+{
+    Node * pnode = plist->head;
+
+    while (pnode != NULL)
+    {
+        (*pfun)(pnode->item);
+        pnode = pnode->next;
+    }
+}
+
+//æ¸…ç©ºé“¾è¡¨
 void DeleteAll(List * plist)
 {
-	Node * pnode;
+    Node * pnode;
 
-	while (plist->head != NULL)
-	{
-		pnode = plist->head;
-		plist->head = plist->head->next;
-		free(pnode);
-	}
+    while (plist->head != NULL)
+    {
+        pnode = plist->head;
+        plist->head = plist->head->next;
+        free(pnode);
+    }
 }

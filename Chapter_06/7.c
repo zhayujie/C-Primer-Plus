@@ -1,20 +1,20 @@
-//ÓëÌâÄ¿²»Í¬ ´òÓ¡µÄÊÇ¾ä×Ó
+//ä¸é¢˜ç›®ä¸åŒ æ‰“å°çš„æ˜¯å¥å­
 #include<stdio.h>
 #include<string.h>
 #define SIZE 40
 int main(void)
 {
-	int i,index=-1; 
-	char ch[SIZE];
-	printf("Input a word: ");
-	do
-	{	index++;
-	scanf("%c",&ch[index]);}
-	while(ch[index]!='\n');
-	for(i=index+1;i<=40;i++)
-		ch[i]='\0';
-	for(index=strlen(ch);index>=0;index--)
-		printf("%c",ch[index]);
-	printf("\n");
-	return 0;
-} 
+    int i,index=-1;
+    char ch[SIZE];
+    printf("Input a word: ");
+    do
+    {	index++;
+    scanf("%c",&ch[index]);}
+    while(ch[index]!='\n');
+    for(i=index+1;i<=40;i++)
+        ch[i]='\0';
+    for(index=strlen(ch);index>=0;index--)
+        printf("%c",ch[index]);
+    printf("\n");
+    return 0;
+}

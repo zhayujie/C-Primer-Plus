@@ -4,51 +4,51 @@ char * s_gets(char * st, int n);
 void delete_space(char * st);
 int main(void)
 {
-	char str[SIZE];
-	while (*s_gets(str, SIZE) != '\n')
-		delete_space(str);
-	printf("Bye.\n");
-	
-	return 0;
+    char str[SIZE];
+    while (*s_gets(str, SIZE) != '\n')
+        delete_space(str);
+    printf("Bye.\n");
+    
+    return 0;
 }
 
-//É¾³ı¿Õ¸ñµÄº¯Êı
+//åˆ é™¤ç©ºæ ¼çš„å‡½æ•°
 void delete_space(char * st)
 {
-	int i;
-	char * p = st;
-	
-	printf("\nThe original string is:\n");
-	puts(st);
-	while (*st)
-	{	//Èç¹ûÓöµ½¿Õ¸ñ£¬ºóÃæËùÓĞ×Ö·ûÍùÇ°½øÒ»¸ñ
-		if (*st == ' ')
-			for (i = 0; st[i] != '\0'; i++)
-				st[i] = st[i + 1];
-		else
-			st++;
-	}
-	printf("Now, the string is:\n");
-	puts(p);
-	printf("\n");
+    int i;
+    char * p = st;
+    
+    printf("\nThe original string is:\n");
+    puts(st);
+    while (*st)
+    {	//å¦‚æœé‡åˆ°ç©ºæ ¼ï¼Œåé¢æ‰€æœ‰å­—ç¬¦å¾€å‰è¿›ä¸€æ ¼
+        if (*st == ' ')
+            for (i = 0; st[i] != '\0'; i++)
+                st[i] = st[i + 1];
+        else
+            st++;
+    }
+    printf("Now, the string is:\n");
+    puts(p);
+    printf("\n");
 }
 
-//×Ô¶¨ÒåµÄ×Ö·û´®ÊäÈëº¯Êı
+//è‡ªå®šä¹‰çš„å­—ç¬¦ä¸²è¾“å…¥å‡½æ•°
 char * s_gets(char * st, int n)
 {
-	int i = 0;
-	
-	printf("Input the first string (blank line to quit):\n");
-	if (fgets(st, n, stdin) != NULL && st[0] != '\n')	//¼´·µ»ØÖµst²»µÈÓÚNULL
-	{
-		while (st[i] != '\n' && st[i] != '\0')
-			i++;
-		if (st[i] == '\n')
-			st[i] = '\0';
-		else 
-			while (getchar() != '\n')
-				continue;
-	}
+    int i = 0;
+    
+    printf("Input the first string (blank line to quit):\n");
+    if (fgets(st, n, stdin) != NULL && st[0] != '\n')	//å³è¿”å›å€¼stä¸ç­‰äºNULL
+    {
+        while (st[i] != '\n' && st[i] != '\0')
+            i++;
+        if (st[i] == '\n')
+            st[i] = '\0';
+        else
+            while (getchar() != '\n')
+                continue;
+    }
 
-	return st;
+    return st;
 }

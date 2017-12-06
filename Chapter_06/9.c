@@ -1,20 +1,20 @@
 #include<stdio.h>
 double calculate(double n1, double n2);
 int main(void)
-{ 
-	double num1, num2;
-	
-	printf("Input two numbers: ");
-	while (2 == scanf("%lf%lf", &num1, &num2))   //ÊäÈëÁ½¸ö¸¡µãÊı
-	{
-		printf("%f\n", calculate(num1, num2));   //º¯Êıµ÷ÓÃ
-		printf("Input your next pair of numbers: ");
-	}
-	printf("Bye!\n");
-	return 0;
+{
+    double num1, num2;
+    
+    printf("Input two numbers: ");
+    while (2 == scanf("%lf%lf", &num1, &num2))   //è¾“å…¥ä¸¤ä¸ªæµ®ç‚¹æ•°
+    {
+        printf("%f\n", calculate(num1, num2));   //å‡½æ•°è°ƒç”¨
+        printf("Input your next pair of numbers: ");
+    }
+    printf("Bye!\n");
+    return 0;
 }
 
-double calculate(double n1, double n2) 
+double calculate(double n1, double n2)
 {
-	return ((n1 - n2) / (n1 * n2));     //·µ»ØÔËËã½á¹û
+    return ((n1 - n2) / (n1 * n2));     //è¿”å›è¿ç®—ç»“æœ
 }

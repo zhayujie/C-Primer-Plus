@@ -1,9 +1,9 @@
 #include<stdio.h>
 int main(void)
 {
-	int days,years=21;
+    int days,years=21;
 
-	days=years*365;
-	printf("ÎÒµÄÄêÁäÊÇ%dËê£¬%dÌì\n",years,days);
+    days=years*365;
+    printf("æˆ‘çš„å¹´é¾„æ˜¯%då²ï¼Œ%då¤©\n",years,days);
     return 0;
 }
