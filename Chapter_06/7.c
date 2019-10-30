@@ -1,20 +1,14 @@
-//与题目不同 打印的是句子
-#include<stdio.h>
-#include<string.h>
-#define SIZE 40
-int main(void)
+#include <stdio.h>
+#include <string.h>
+#define WORD_SIZE 26
+int main (void)
 {
-    int i,index=-1;
-    char ch[SIZE];
-    printf("Input a word: ");
-    do
-    {	index++;
-    scanf("%c",&ch[index]);}
-    while(ch[index]!='\n');
-    for(i=index+1;i<=40;i++)
-        ch[i]='\0';
-    for(index=strlen(ch);index>=0;index--)
-        printf("%c",ch[index]);
+    char word[WORD_SIZE];
+    printf("Input a word:\n");
+    scanf("%s", word);
+    for(long i = strlen(word); i >= 0; i--) {
+        printf("%c", word[i]);
+    }
     printf("\n");
     return 0;
 }
