@@ -1,12 +1,18 @@
 #include<stdio.h>
-#define ROWS 5
+
 int main(void)
 {
     char ch='A';
-    int i,j;
-    for(i=1;i<=ROWS;i++)
+    char a;
+    int i, j,ROW;
+
+    printf("please input a letter:");
+    scanf("%c", &a);
+    ROW = a - ch + 1;
+    
+    for (i = 1; i <= ROW; i++)
     {
-        for(j=1;j<=ROWS-i;j++)
+        for(j=1;j<=ROW-i;j++)
             printf(" ");
         for(j=0;j<i;j++)
             printf("%c",ch+j);
