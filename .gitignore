@@ -58,3 +58,6 @@ Debug
 *.ncb
 *.opt
 *.plg
+
+# mac
+.DS_Store
