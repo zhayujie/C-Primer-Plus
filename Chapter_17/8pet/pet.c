@@ -13,10 +13,10 @@ typedef struct pair {
 static int count = 0;
 
 //局域函数声明
-static Pair SeekItem(const Tree * ptree, Item * pi);
-static int ToLeft(Item * p1, Item * p2);
-static int ToRight(Item * p1, Item * p2);
-static Trnode * MakeNode(Item * item);
+static Pair SeekItem(const Tree * ptree, const Item * pi);
+static int ToLeft(const Item * p1, const Item * p2);
+static int ToRight(const Item * p1, const Item * p2);
+static Trnode * MakeNode(const Item * item);
 static void AddNode(Trnode * new_node, Trnode * root);
 static void DeleteNode(Trnode * * ptr);
 static void InOrder(Trnode * root, void (*pfun)(Item item));
@@ -181,7 +181,7 @@ static Pair SeekItem(const Tree * ptree, const Item * pi)
 }
 
 //项在左边
-static int ToLeft(Item * p1, Item * p2)
+static int ToLeft(const Item * p1, const Item * p2)
 {
     if (strcmp(p1->name, p2->name) < 0)
         return 1;
@@ -190,7 +190,7 @@ static int ToLeft(Item * p1, Item * p2)
 }
 
 //项在右边
-static int ToRight(Item * p1, Item * p2)
+static int ToRight(const Item * p1, const Item * p2)
 {
     if (strcmp(p1->name, p2->name) > 0)
         return 1;
@@ -198,7 +198,7 @@ static int ToRight(Item * p1, Item * p2)
         return 0;
 }
 
-static Trnode * MakeNode(Item * item)
+static Trnode * MakeNode(const Item * item)
 {
     Trnode * pnode;
 
