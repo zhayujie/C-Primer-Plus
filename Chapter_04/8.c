@@ -1,5 +1,5 @@
 #include<stdio.h>
-#define GALLON 3.758 //1 gallon=3.785 liters
+#define GALLON 3.785 //1 gallon=3.785 liters
 #define MILE 1.609 //1 mile=1.609 kilometers
 int main(void)
 {
